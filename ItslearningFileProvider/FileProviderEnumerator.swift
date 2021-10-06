@@ -39,31 +39,32 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
          - inform the observer about the items returned by the server (possibly multiple times)
          - inform the observer that you are finished with this page
          */
+        logger.log("Enumerating \(String(self.enumeratedItemIdentifier.rawValue), privacy: .public)")
         
-        if let authHandler = fpExtension.authHandler {
-            // TODO: Abstract request handling into authHandler
-            AF.request("https://sdu.itslearning.com/restapi/personal/courses/v1", interceptor: OAuth2RetryHandler(oauth2: authHandler.oauth2), requestModifier: { $0.timeoutInterval = 5 }).validate().responseJSON() { response in switch response.result {
-            case .success(let data):
-                let json = data as! NSDictionary
-                let courses = json.object(forKey: "EntityArray") as! NSArray
-                
-                observer.didEnumerate(courses.map {
-                    let course = $0 as! NSDictionary
-                    return FileProviderItem(identifier: NSFileProviderItemIdentifier(course.object(forKey: "Title") as! String))
-                } as [FileProviderItem])
-                
-                observer.finishEnumerating(upTo: nil)
-                
-            case .failure(let error):
-                self.logger.log("ERROR: \(error.localizedDescription)")
-                observer.didEnumerate([FileProviderItem(identifier: NSFileProviderItemIdentifier("ERROR: See console"))])
-                observer.finishEnumerating(upTo: nil)
-            }
-            }
-        } else {
-            logger.log("ERROR: Not signed in")
+        guard let authHandler = fpExtension.authHandler else {
+            logger.log("Not signed in")
             observer.didEnumerate([FileProviderItem(identifier: NSFileProviderItemIdentifier("Error: Not signed in"))])
             observer.finishEnumerating(upTo: nil)
+            return;
+        }
+        
+        if(self.enumeratedItemIdentifier == .rootContainer) {
+            // We should iterate courses
+            authHandler.GetCourses { courses in
+                observer.didEnumerate(courses.map {
+                    return FileProviderItem(identifier: NSFileProviderItemIdentifier(String($0.CourseId)), title: $0.Title)
+                } as [FileProviderItem])
+                observer.finishEnumerating(upTo: nil)
+            }
+        } else if let courseId = Int(self.enumeratedItemIdentifier.rawValue) {
+            // We should iterate folders in course
+            authHandler.GetResources(course: courseId, folder: 0) { resources in
+                observer.didEnumerate(resources.map {
+                    self.logger.log("\(String($0.Title), privacy: .public)")
+                    return FileProviderItem(identifier: NSFileProviderItemIdentifier($0.Title), parent: NSFileProviderItemIdentifier(String(courseId)))
+                } as [FileProviderItem])
+                observer.finishEnumerating(upTo: nil)
+            }
         }
     }
     

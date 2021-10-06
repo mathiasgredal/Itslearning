@@ -12,24 +12,19 @@ import Foundation
 
 
 class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
-    let logger = Logger(subsystem: "sdu.magre21.itslearning.itslearningfileprovider", category: "extension")
-    let domain: NSFileProviderDomain
-    var manager: NSFileProviderManager
-    var authHandler: AuthHandler?
+    public let logger = Logger(subsystem: "sdu.magre21.itslearning.itslearningfileprovider", category: "extension")
+    public let domain: NSFileProviderDomain
+    public var manager: NSFileProviderManager
+    public var authHandler: AuthHandler?
     
     required public init(domain: NSFileProviderDomain) {
         self.logger.debug("Initializing file provider extension")
         self.domain = domain
-        manager = NSFileProviderManager(for: domain)!
-        do {
-            self.authHandler = try AuthHandler()
-            // TODO: Make helper for verifying we successfully connected
-            self.logger.log("SUCCESS: Initialized auth handler")
-        } catch {
-            self.logger.debug("ERROR: Could not initialize auth handler")
-        }
-        
+        self.manager = NSFileProviderManager(for: domain)!
+        self.authHandler = AuthHandler()
         super.init()
+        
+        
         
         // HACK: The fileprovider responds better to updates with this
         Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.pingFinder), userInfo: nil, repeats: true)
@@ -38,7 +33,7 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
     @objc func pingFinder() {
         manager.signalEnumerator(for: .rootContainer) { error in
             guard error == nil else {
-                self.logger.debug("Error: \(String(describing: error))")
+                self.logger.debug("Error: \(String(describing: error), privacy: .public)")
                 return
             }
         }

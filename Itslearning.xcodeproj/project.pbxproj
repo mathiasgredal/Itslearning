@@ -15,17 +15,31 @@
 		D06C9C4625F7B01300354820 /* FileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06C9C4525F7B01300354820 /* FileProviderEnumerator.swift */; };
 		D06C9C4B25F7B01300354820 /* ItslearningFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D06C9C3F25F7B01300354820 /* ItslearningFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D0FA53D026300F1700C32328 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D0FA53CF26300F1700C32328 /* README.md */; };
+		DA3674D6270B00FC003F39E6 /* ItslearningAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */; };
+		DA3674D7270B00FC003F39E6 /* ItslearningAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */; };
+		DA5A9B9326FFA51700B25514 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5A9B9226FFA51700B25514 /* Storyboard.storyboard */; };
 		DA6B03BE26E957C400B46E1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03BD26E957C400B46E1D /* ContentView.swift */; };
 		DA6B03DD26EBF91D00B46E1D /* ItslearningAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = DA6B03DB26EBF91D00B46E1D /* ItslearningAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA6B03E026EBF91D00B46E1D /* ItslearningAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */; };
 		DA6B03E126EBF91D00B46E1D /* ItslearningAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DA6B03EC26EBF97800B46E1D /* ItslearningAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */; };
-		DA6B03ED26EBF97800B46E1D /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EB26EBF97800B46E1D /* Defaults.swift */; };
 		DA6B03EE26EBF99100B46E1D /* ItslearningAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */; };
 		DA6B03EF26EBF99100B46E1D /* ItslearningAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DA6B03F326EC133000B46E1D /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EB26EBF97800B46E1D /* Defaults.swift */; };
 		DA6B03F426EC133100B46E1D /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EB26EBF97800B46E1D /* Defaults.swift */; };
 		DA6B03FA26EC1EB500B46E1D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DA6B03F926EC1EB500B46E1D /* Alamofire */; };
+		DA6EFDC226F3F4FB00AEFCFA /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6EFDC126F3F4FB00AEFCFA /* Login.swift */; };
+		DA89DF7526F3849400D0C114 /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = DA89DF7426F3849400D0C114 /* OAuth2 */; };
+		DA89DF7726F3849700D0C114 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DA89DF7626F3849700D0C114 /* Alamofire */; };
+		DABBCF6B2707B16C005E9DDA /* ElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A9B9926FFAA3700B25514 /* ElementType.swift */; };
+		DABBCF6D2707B16C005E9DDA /* CourseFolderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABBCF672707AEC1005E9DDA /* CourseFolderDetails.swift */; };
+		DABBCF6E2707B16C005E9DDA /* PersonCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A9B9526FFA84F00B25514 /* PersonCourse.swift */; };
+		DABBCF6F2707B16C005E9DDA /* CourseResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A9B9726FFA9B000B25514 /* CourseResource.swift */; };
+		DABBCF702707B16C005E9DDA /* EntityListOfPersonCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABBCF652707ADE2005E9DDA /* EntityListOfPersonCourse.swift */; };
+		DABBCF712707B804005E9DDA /* ElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A9B9926FFAA3700B25514 /* ElementType.swift */; };
+		DABBCF722707B804005E9DDA /* CourseFolderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABBCF672707AEC1005E9DDA /* CourseFolderDetails.swift */; };
+		DABBCF732707B804005E9DDA /* EntityListOfPersonCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABBCF652707ADE2005E9DDA /* EntityListOfPersonCourse.swift */; };
+		DABBCF752707B804005E9DDA /* CourseResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A9B9726FFA9B000B25514 /* CourseResource.swift */; };
+		DABBCF762707B804005E9DDA /* PersonCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A9B9526FFA84F00B25514 /* PersonCourse.swift */; };
 		DAC6507626EF8E160029E2B1 /* OAuth2RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC6507526EF8E160029E2B1 /* OAuth2RetryHandler.swift */; };
 		DAC6507C26EF9AAE0029E2B1 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DAC6507B26EF9AAE0029E2B1 /* Alamofire */; };
 		DAE1BC9126F1093600DE8470 /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = DAE1BC9026F1093600DE8470 /* OAuth2 */; };
@@ -114,12 +128,19 @@
 		D06C9C4725F7B01300354820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D06C9C4825F7B01300354820 /* ItslearningFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ItslearningFileProvider.entitlements; sourceTree = "<group>"; };
 		D0FA53CF26300F1700C32328 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DA5A9B9226FFA51700B25514 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		DA5A9B9526FFA84F00B25514 /* PersonCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCourse.swift; sourceTree = "<group>"; };
+		DA5A9B9726FFA9B000B25514 /* CourseResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseResource.swift; sourceTree = "<group>"; };
+		DA5A9B9926FFAA3700B25514 /* ElementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementType.swift; sourceTree = "<group>"; };
 		DA6B03BD26E957C400B46E1D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ItslearningAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6B03DB26EBF91D00B46E1D /* ItslearningAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItslearningAPI.h; sourceTree = "<group>"; };
 		DA6B03DC26EBF91D00B46E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItslearningAPI.swift; sourceTree = "<group>"; };
 		DA6B03EB26EBF97800B46E1D /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		DA6EFDC126F3F4FB00AEFCFA /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		DABBCF652707ADE2005E9DDA /* EntityListOfPersonCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityListOfPersonCourse.swift; sourceTree = "<group>"; };
+		DABBCF672707AEC1005E9DDA /* CourseFolderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseFolderDetails.swift; sourceTree = "<group>"; };
 		DAC6507526EF8E160029E2B1 /* OAuth2RetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2RetryHandler.swift; sourceTree = "<group>"; };
 		DAE1BC9726F10ACF00DE8470 /* AuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHandler.swift; sourceTree = "<group>"; };
 		DAE1BC9B26F10DDC00DE8470 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
@@ -153,6 +174,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA89DF7526F3849400D0C114 /* OAuth2 in Frameworks */,
+				DA89DF7726F3849700D0C114 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +214,7 @@
 				D06C9C3425F7AFD400354820 /* Info.plist */,
 				D06C9C3525F7AFD400354820 /* Itslearning.entitlements */,
 				DA6B03BD26E957C400B46E1D /* ContentView.swift */,
+				DA5A9B9226FFA51700B25514 /* Storyboard.storyboard */,
 			);
 			path = Itslearning;
 			sourceTree = "<group>";
@@ -207,6 +231,18 @@
 			path = ItslearningFileProvider;
 			sourceTree = "<group>";
 		};
+		DA5A9B9426FFA84300B25514 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				DA5A9B9526FFA84F00B25514 /* PersonCourse.swift */,
+				DA5A9B9726FFA9B000B25514 /* CourseResource.swift */,
+				DA5A9B9926FFAA3700B25514 /* ElementType.swift */,
+				DABBCF652707ADE2005E9DDA /* EntityListOfPersonCourse.swift */,
+				DABBCF672707AEC1005E9DDA /* CourseFolderDetails.swift */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
 		DA6B03CF26E962C400B46E1D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +253,7 @@
 		DA6B03DA26EBF91D00B46E1D /* ItslearningAPI */ = {
 			isa = PBXGroup;
 			children = (
+				DA5A9B9426FFA84300B25514 /* Types */,
 				DAE1BC9626F10A8D00DE8470 /* OAuth2 */,
 				DA6B03EB26EBF97800B46E1D /* Defaults.swift */,
 				DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */,
@@ -242,6 +279,7 @@
 				DAF1B8BF26F29333007BCDE2 /* Home.swift */,
 				DAF1B8C126F29389007BCDE2 /* Controls.swift */,
 				DAF1B8C326F293CE007BCDE2 /* Settings.swift */,
+				DA6EFDC126F3F4FB00AEFCFA /* Login.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -322,6 +360,10 @@
 			dependencies = (
 			);
 			name = ItslearningAPI;
+			packageProductDependencies = (
+				DA89DF7426F3849400D0C114 /* OAuth2 */,
+				DA89DF7626F3849700D0C114 /* Alamofire */,
+			);
 			productName = ItslearningAPI;
 			productReference = DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */;
 			productType = "com.apple.product-type.framework";
@@ -377,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0FA53D026300F1700C32328 /* README.md in Resources */,
+				DA5A9B9326FFA51700B25514 /* Storyboard.storyboard in Resources */,
 				D06C9C3025F7AFD400354820 /* Assets.xcassets in Resources */,
 				D06C9C3325F7AFD400354820 /* Main.storyboard in Resources */,
 			);
@@ -404,14 +447,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA6B03F426EC133100B46E1D /* Defaults.swift in Sources */,
+				DA3674D6270B00FC003F39E6 /* ItslearningAPI.swift in Sources */,
+				DA6EFDC226F3F4FB00AEFCFA /* Login.swift in Sources */,
 				D06C9C2C25F7AFD200354820 /* AppDelegate.swift in Sources */,
 				DAE1BC9A26F10AF100DE8470 /* AuthHandler.swift in Sources */,
 				DAC6507626EF8E160029E2B1 /* OAuth2RetryHandler.swift in Sources */,
 				DAE1BC9C26F10DDC00DE8470 /* AuthToken.swift in Sources */,
 				DAF1B8C226F29389007BCDE2 /* Controls.swift in Sources */,
+				DABBCF6B2707B16C005E9DDA /* ElementType.swift in Sources */,
+				DABBCF6E2707B16C005E9DDA /* PersonCourse.swift in Sources */,
 				DAF1B8C426F293CE007BCDE2 /* Settings.swift in Sources */,
 				DA6B03BE26E957C400B46E1D /* ContentView.swift in Sources */,
 				DAF1B8C026F29333007BCDE2 /* Home.swift in Sources */,
+				DABBCF6F2707B16C005E9DDA /* CourseResource.swift in Sources */,
+				DABBCF6D2707B16C005E9DDA /* CourseFolderDetails.swift in Sources */,
+				DABBCF702707B16C005E9DDA /* EntityListOfPersonCourse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,11 +469,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DABBCF712707B804005E9DDA /* ElementType.swift in Sources */,
+				DA3674D7270B00FC003F39E6 /* ItslearningAPI.swift in Sources */,
+				DABBCF762707B804005E9DDA /* PersonCourse.swift in Sources */,
 				D06C9C4225F7B01300354820 /* FileProviderExtension.swift in Sources */,
 				DA6B03F326EC133000B46E1D /* Defaults.swift in Sources */,
+				DABBCF752707B804005E9DDA /* CourseResource.swift in Sources */,
+				DABBCF732707B804005E9DDA /* EntityListOfPersonCourse.swift in Sources */,
 				DAE1BC9E26F114E200DE8470 /* OAuth2RetryHandler.swift in Sources */,
 				DAE1BC9926F10AF100DE8470 /* AuthHandler.swift in Sources */,
 				D06C9C4425F7B01300354820 /* FileProviderItem.swift in Sources */,
+				DABBCF722707B804005E9DDA /* CourseFolderDetails.swift in Sources */,
 				DAE1BC9D26F10DDC00DE8470 /* AuthToken.swift in Sources */,
 				D06C9C4625F7B01300354820 /* FileProviderEnumerator.swift in Sources */,
 			);
@@ -433,8 +489,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA6B03EC26EBF97800B46E1D /* ItslearningAPI.swift in Sources */,
-				DA6B03ED26EBF97800B46E1D /* Defaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -795,6 +849,16 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		DA6B03F926EC1EB500B46E1D /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA6B03F826EC1EB500B46E1D /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		DA89DF7426F3849400D0C114 /* OAuth2 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAE1BC8F26F1093600DE8470 /* XCRemoteSwiftPackageReference "OAuth2" */;
+			productName = OAuth2;
+		};
+		DA89DF7626F3849700D0C114 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DA6B03F826EC1EB500B46E1D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;

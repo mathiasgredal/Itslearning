@@ -8,15 +8,25 @@
 import FileProvider
 import UniformTypeIdentifiers
 
-class FileProviderItem: NSObject, NSFileProviderItem {
 
-    // TODO: implement an initializer to create an item from your extension's backing model
-    // TODO: implement the accessors to return the values from your extension's backing model
-    
+// TODO: implement an initializer to create an item from your extension's backing model
+// TODO: implement the accessors to return the values from your extension's backing model
+class FileProviderItem: NSObject, NSFileProviderItem {
     private let identifier: NSFileProviderItemIdentifier
+    private let parent: NSFileProviderItemIdentifier
+    private let title: String
+
     
-    init(identifier: NSFileProviderItemIdentifier) {
+    init(identifier: NSFileProviderItemIdentifier, title: String? = nil) {
         self.identifier = identifier
+        self.parent = .rootContainer
+        self.title = title ?? identifier.rawValue
+    }
+    
+    init(identifier: NSFileProviderItemIdentifier, parent: NSFileProviderItemIdentifier) {
+        self.identifier = identifier
+        self.title = identifier.rawValue
+        self.parent = parent
     }
     
     var itemIdentifier: NSFileProviderItemIdentifier {
@@ -24,7 +34,7 @@ class FileProviderItem: NSObject, NSFileProviderItem {
     }
     
     var parentItemIdentifier: NSFileProviderItemIdentifier {
-        return .rootContainer
+        return parent
     }
     
     var capabilities: NSFileProviderItemCapabilities {
@@ -36,7 +46,7 @@ class FileProviderItem: NSObject, NSFileProviderItem {
     }
     
     var filename: String {
-        return identifier.rawValue
+        return self.title
     }
     
     var contentType: UTType {

@@ -18,24 +18,23 @@ class OAuth2RetryHandler: Alamofire.RequestInterceptor {
     }
     
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
-       
         
-        if let response = request.task?.response as? HTTPURLResponse, 401 == response.statusCode, let req = request.request {
-            var dataRequest = OAuth2DataRequest(request: req, callback: { _ in })
-          
-            dataRequest.context = completion
-            loader.enqueue(request: dataRequest)
-            loader.attemptToAuthorize() { authParams, error in
-                self.loader.dequeueAndApply() { req in
-                    if let comp = req.context as? (RetryResult) -> Void {
-                        comp(nil != authParams ? .retry : .doNotRetry)
-                    }
-                }
-            }
-        }
-        else {
+//        if let response = request.task?.response as? HTTPURLResponse, 401 == response.statusCode, let req = request.request {
+//            var dataRequest = OAuth2DataRequest(request: req, callback: { _ in })
+//
+//            dataRequest.context = completion
+//            loader.enqueue(request: dataRequest)
+//            loader.attemptToAuthorize() { authParams, error in
+//                self.loader.dequeueAndApply() { req in
+//                    if let comp = req.context as? (RetryResult) -> Void {
+//                        comp(nil != authParams ? .retry : .doNotRetry)
+//                    }
+//                }
+//            }
+//        }
+//        else {
              completion(.doNotRetry)   // not a 401, not our problem
-        }
+//        }
     }
     
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
