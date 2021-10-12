@@ -15,6 +15,11 @@
 		D06C9C4625F7B01300354820 /* FileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06C9C4525F7B01300354820 /* FileProviderEnumerator.swift */; };
 		D06C9C4B25F7B01300354820 /* ItslearningFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D06C9C3F25F7B01300354820 /* ItslearningFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D0FA53D026300F1700C32328 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D0FA53CF26300F1700C32328 /* README.md */; };
+		DA0266AE2715A2FF004DF9DB /* SSOResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0266AC2715A2FC004DF9DB /* SSOResponse.swift */; };
+		DA0266AF2715A2FF004DF9DB /* SSOResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0266AC2715A2FC004DF9DB /* SSOResponse.swift */; };
+		DA0266B12715A4FE004DF9DB /* AuthHandler+REST.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0266B02715A4FE004DF9DB /* AuthHandler+REST.swift */; };
+		DA0266B22715A4FE004DF9DB /* AuthHandler+REST.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0266B02715A4FE004DF9DB /* AuthHandler+REST.swift */; };
+		DA0266B82715F3B2004DF9DB /* Fileprovider.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA0266B72715F3B2004DF9DB /* Fileprovider.xcassets */; };
 		DA3674D6270B00FC003F39E6 /* ItslearningAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */; };
 		DA3674D7270B00FC003F39E6 /* ItslearningAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */; };
 		DA5A9B9326FFA51700B25514 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5A9B9226FFA51700B25514 /* Storyboard.storyboard */; };
@@ -28,6 +33,10 @@
 		DA6B03F426EC133100B46E1D /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EB26EBF97800B46E1D /* Defaults.swift */; };
 		DA6B03FA26EC1EB500B46E1D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DA6B03F926EC1EB500B46E1D /* Alamofire */; };
 		DA6EFDC226F3F4FB00AEFCFA /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6EFDC126F3F4FB00AEFCFA /* Login.swift */; };
+		DA75743B270DC009002CADAF /* FileProviderCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA75743A270DC009002CADAF /* FileProviderCourseItem.swift */; };
+		DA75743D270DC01A002CADAF /* FileProviderResourceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA75743C270DC01A002CADAF /* FileProviderResourceItem.swift */; };
+		DA75743F270DC02F002CADAF /* FileProviderRootEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA75743E270DC02F002CADAF /* FileProviderRootEnumerator.swift */; };
+		DA757441270DC03A002CADAF /* FileProviderResourceEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA757440270DC03A002CADAF /* FileProviderResourceEnumerator.swift */; };
 		DA89DF7526F3849400D0C114 /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = DA89DF7426F3849400D0C114 /* OAuth2 */; };
 		DA89DF7726F3849700D0C114 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DA89DF7626F3849700D0C114 /* Alamofire */; };
 		DABBCF6B2707B16C005E9DDA /* ElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A9B9926FFAA3700B25514 /* ElementType.swift */; };
@@ -128,6 +137,9 @@
 		D06C9C4725F7B01300354820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D06C9C4825F7B01300354820 /* ItslearningFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ItslearningFileProvider.entitlements; sourceTree = "<group>"; };
 		D0FA53CF26300F1700C32328 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DA0266AC2715A2FC004DF9DB /* SSOResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSOResponse.swift; sourceTree = "<group>"; };
+		DA0266B02715A4FE004DF9DB /* AuthHandler+REST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthHandler+REST.swift"; sourceTree = "<group>"; };
+		DA0266B72715F3B2004DF9DB /* Fileprovider.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Fileprovider.xcassets; sourceTree = "<group>"; };
 		DA5A9B9226FFA51700B25514 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		DA5A9B9526FFA84F00B25514 /* PersonCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCourse.swift; sourceTree = "<group>"; };
 		DA5A9B9726FFA9B000B25514 /* CourseResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseResource.swift; sourceTree = "<group>"; };
@@ -139,6 +151,10 @@
 		DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItslearningAPI.swift; sourceTree = "<group>"; };
 		DA6B03EB26EBF97800B46E1D /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		DA6EFDC126F3F4FB00AEFCFA /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		DA75743A270DC009002CADAF /* FileProviderCourseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderCourseItem.swift; sourceTree = "<group>"; };
+		DA75743C270DC01A002CADAF /* FileProviderResourceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderResourceItem.swift; sourceTree = "<group>"; };
+		DA75743E270DC02F002CADAF /* FileProviderRootEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderRootEnumerator.swift; sourceTree = "<group>"; };
+		DA757440270DC03A002CADAF /* FileProviderResourceEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderResourceEnumerator.swift; sourceTree = "<group>"; };
 		DABBCF652707ADE2005E9DDA /* EntityListOfPersonCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityListOfPersonCourse.swift; sourceTree = "<group>"; };
 		DABBCF672707AEC1005E9DDA /* CourseFolderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseFolderDetails.swift; sourceTree = "<group>"; };
 		DAC6507526EF8E160029E2B1 /* OAuth2RetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2RetryHandler.swift; sourceTree = "<group>"; };
@@ -227,6 +243,11 @@
 				D06C9C4525F7B01300354820 /* FileProviderEnumerator.swift */,
 				D06C9C4725F7B01300354820 /* Info.plist */,
 				D06C9C4825F7B01300354820 /* ItslearningFileProvider.entitlements */,
+				DA75743A270DC009002CADAF /* FileProviderCourseItem.swift */,
+				DA75743C270DC01A002CADAF /* FileProviderResourceItem.swift */,
+				DA75743E270DC02F002CADAF /* FileProviderRootEnumerator.swift */,
+				DA757440270DC03A002CADAF /* FileProviderResourceEnumerator.swift */,
+				DA0266B72715F3B2004DF9DB /* Fileprovider.xcassets */,
 			);
 			path = ItslearningFileProvider;
 			sourceTree = "<group>";
@@ -239,6 +260,7 @@
 				DA5A9B9926FFAA3700B25514 /* ElementType.swift */,
 				DABBCF652707ADE2005E9DDA /* EntityListOfPersonCourse.swift */,
 				DABBCF672707AEC1005E9DDA /* CourseFolderDetails.swift */,
+				DA0266AC2715A2FC004DF9DB /* SSOResponse.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -269,6 +291,7 @@
 				DAC6507526EF8E160029E2B1 /* OAuth2RetryHandler.swift */,
 				DAE1BC9726F10ACF00DE8470 /* AuthHandler.swift */,
 				DAE1BC9B26F10DDC00DE8470 /* AuthToken.swift */,
+				DA0266B02715A4FE004DF9DB /* AuthHandler+REST.swift */,
 			);
 			path = OAuth2;
 			sourceTree = "<group>";
@@ -429,6 +452,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA0266B82715F3B2004DF9DB /* Fileprovider.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +474,7 @@
 				DA3674D6270B00FC003F39E6 /* ItslearningAPI.swift in Sources */,
 				DA6EFDC226F3F4FB00AEFCFA /* Login.swift in Sources */,
 				D06C9C2C25F7AFD200354820 /* AppDelegate.swift in Sources */,
+				DA0266B12715A4FE004DF9DB /* AuthHandler+REST.swift in Sources */,
 				DAE1BC9A26F10AF100DE8470 /* AuthHandler.swift in Sources */,
 				DAC6507626EF8E160029E2B1 /* OAuth2RetryHandler.swift in Sources */,
 				DAE1BC9C26F10DDC00DE8470 /* AuthToken.swift in Sources */,
@@ -462,6 +487,7 @@
 				DABBCF6F2707B16C005E9DDA /* CourseResource.swift in Sources */,
 				DABBCF6D2707B16C005E9DDA /* CourseFolderDetails.swift in Sources */,
 				DABBCF702707B16C005E9DDA /* EntityListOfPersonCourse.swift in Sources */,
+				DA0266AF2715A2FF004DF9DB /* SSOResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,13 +498,19 @@
 				DABBCF712707B804005E9DDA /* ElementType.swift in Sources */,
 				DA3674D7270B00FC003F39E6 /* ItslearningAPI.swift in Sources */,
 				DABBCF762707B804005E9DDA /* PersonCourse.swift in Sources */,
+				DA0266B22715A4FE004DF9DB /* AuthHandler+REST.swift in Sources */,
 				D06C9C4225F7B01300354820 /* FileProviderExtension.swift in Sources */,
+				DA0266AE2715A2FF004DF9DB /* SSOResponse.swift in Sources */,
+				DA75743D270DC01A002CADAF /* FileProviderResourceItem.swift in Sources */,
 				DA6B03F326EC133000B46E1D /* Defaults.swift in Sources */,
 				DABBCF752707B804005E9DDA /* CourseResource.swift in Sources */,
 				DABBCF732707B804005E9DDA /* EntityListOfPersonCourse.swift in Sources */,
+				DA75743F270DC02F002CADAF /* FileProviderRootEnumerator.swift in Sources */,
 				DAE1BC9E26F114E200DE8470 /* OAuth2RetryHandler.swift in Sources */,
+				DA75743B270DC009002CADAF /* FileProviderCourseItem.swift in Sources */,
 				DAE1BC9926F10AF100DE8470 /* AuthHandler.swift in Sources */,
 				D06C9C4425F7B01300354820 /* FileProviderItem.swift in Sources */,
+				DA757441270DC03A002CADAF /* FileProviderResourceEnumerator.swift in Sources */,
 				DABBCF722707B804005E9DDA /* CourseFolderDetails.swift in Sources */,
 				DAE1BC9D26F10DDC00DE8470 /* AuthToken.swift in Sources */,
 				D06C9C4625F7B01300354820 /* FileProviderEnumerator.swift in Sources */,
@@ -688,6 +720,7 @@
 		D06C9C4D25F7B01300354820 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = FileproviderIcon;
 				CODE_SIGN_ENTITLEMENTS = ItslearningFileProvider/ItslearningFileProvider.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZF8FHQ365P;
@@ -709,6 +742,7 @@
 		D06C9C4E25F7B01300354820 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = FileproviderIcon;
 				CODE_SIGN_ENTITLEMENTS = ItslearningFileProvider/ItslearningFileProvider.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;

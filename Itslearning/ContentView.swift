@@ -57,7 +57,7 @@ struct ContentView: View {
                 if authHandler.isLoggedIn {
                     Home().environmentObject(authHandler).environmentObject(fileProviderComm)
                 } else {
-                    Login().environmentObject(authHandler)
+                    Login().environmentObject(authHandler).environmentObject(fileProviderComm)
                 }
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)

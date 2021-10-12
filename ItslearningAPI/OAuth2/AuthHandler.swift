@@ -9,9 +9,10 @@ import Foundation
 import OAuth2
 import Alamofire
 
+/// The main class for doing SSO Authenticated communication with Itslearning
 class AuthHandler: ObservableObject {
-    // Create OAuth2 Code Grant using hard-coded values for Itslearning
-    // NOTE: The client id "10ae9d30-1853-48ff-81cb-47b58a325685", is a value extracted from the itslearning app apk file
+    /// Create OAuth2 Code Grant using hard-coded values for Itslearning
+    /// NOTE: The client id "10ae9d30-1853-48ff-81cb-47b58a325685", is a value extracted from the itslearning app apk file
     public let oauth2 = OAuth2CodeGrant(settings: [
         "client_id": "10ae9d30-1853-48ff-81cb-47b58a325685",
         "authorize_uri": "https://sdu.itslearning.com/oauth2/authorize.aspx",
@@ -50,6 +51,7 @@ class AuthHandler: ObservableObject {
         }
     }
     
+    /// Reads the AuthToken from user defaults, returns nil if not found
     func GetAuthToken() -> AuthToken? {
         do {
             if let authTokenData = UserDefaults.sharedContainerDefaults.object(forKey: "authToken") {
@@ -62,6 +64,7 @@ class AuthHandler: ObservableObject {
         return nil
     }
     
+    /// Removes the AuthToken from user default and from the current OAuth2 instance
     func LogOut() {
         print("Logging out")
         UserDefaults.sharedContainerDefaults.removeObject(forKey: "authToken")
@@ -69,26 +72,33 @@ class AuthHandler: ObservableObject {
         self.isLoggedIn = false
     }
     
-    // TODO: This functionality should be moved to OAuth2RetryHandler
-    func ReloadAuthToken(authToken: AuthToken) {
-        // We found authentication tokens in userdefaults
+    /// If possible we refresh the AuthToken and save it to user defaults, if the RefreshToken is invalid or there is som other error, we print it
+    func ReloadAuthToken(completion: @escaping (Bool)->()) {
+        print("Reloading auth token")
+        guard let authToken = GetAuthToken() else {
+            print("Could not find auth tokens in user defaults")
+            completion(false)
+            return
+        }
         oauth2.accessToken = authToken.accessToken
         oauth2.accessTokenExpiry = authToken.accessTokenDate
         oauth2.refreshToken = authToken.refreshToken
         
-        //        oauth2.tryToObtainAccessTokenIfNeeded(params: ["federated_login_provider_id": "0"]) { authParameters, error in
-        //            if error == nil && authParameters != nil  {
-        //                print("Authentication successful, saving tokens to user defaults");
-        //                print("Token \(String(describing: self.oauth2.accessToken!))")
-        //                self.SaveTokens()
-        //
-        //            }
-        //            else {
-        //                print("Error occured: \(String(describing: error) )");
-        //            }
-        //        }
+        oauth2.doRefreshToken(params: ["federated_login_provider_id": "0"]) { keys, error in
+            if let unwrappedError = error {
+                print(unwrappedError)
+                completion(false)
+                return
+            }
+            
+            // No error occured, we can safely store the new tokens
+            self.SaveTokens()
+            completion(true)
+        }
     }
     
+    /// Signs in using an embedded safari window, if we are already signed in no window is shown
+    /// If this is called from the App Extension, then we throw an error
     func SignIn() throws {
         print("Signing in")
         if Bundle.main.bundlePath.hasSuffix(".appex") {
@@ -108,20 +118,13 @@ class AuthHandler: ObservableObject {
         })
     }
     
-    // TODO: The request functionality should be moved to a different file as an extension to improve readability
-    func GetRequest() {
-        AF.request("https://sdu.itslearning.com/restapi/personal/courses/v1", interceptor: OAuth2RetryHandler(oauth2: oauth2), requestModifier: { $0.timeoutInterval = 5 }).validate().response() { response in
-            debugPrint(response)
-        }
-    }
-    
+    /// Verifies the AuthToken by making a request to Itslearning Rest API
     func VerifyAuthToken(authToken: AuthToken, completion: @escaping (Bool)->()) {
         oauth2.accessToken = authToken.accessToken
         oauth2.accessTokenExpiry = authToken.accessTokenDate
         oauth2.refreshToken = authToken.refreshToken
         
-        AF.request("https://sdu.itslearning.com/restapi/personal/courses/v1", interceptor: OAuth2RetryHandler(oauth2: oauth2), requestModifier: { $0.timeoutInterval = 5 }).validate().response() { response in
-            print(response.debugDescription)
+        AF.request("https://sdu.itslearning.com/restapi/personal/courses/v1", interceptor: OAuth2RetryHandler(authHandler: self), requestModifier: { $0.timeoutInterval = 5 }).validate().response() { response in
             if(response.response?.statusCode ?? 401 >= 400) {
                 completion(false)
             }
@@ -132,6 +135,7 @@ class AuthHandler: ObservableObject {
         }
     }
     
+    /// Saves the current tokens to user defaults
     func SaveTokens() {
         if let accessToken = oauth2.accessToken, let refreshToken = oauth2.refreshToken, let accessTokenDate = oauth2.accessTokenExpiry {
             let authToken = AuthToken(accessToken: accessToken, refreshToken: refreshToken, accessTokenDate: accessTokenDate);
@@ -147,48 +151,5 @@ class AuthHandler: ObservableObject {
         else {
             print("ERROR: Could not save authentication tokens")
         }
-    }
-    
-    func GetRequest<T: Decodable>(url: String, type: T.Type = T.self, completion: @escaping ((data: T?, error: AFError?))->()) {
-        AF.request(url, interceptor: OAuth2RetryHandler(oauth2: self.oauth2), requestModifier: { $0.timeoutInterval = 5 }).validate().responseDecodable(of: type.self) { response in
-            //print(response.debugDescription)
-            
-            switch response.result {
-            case .success(let data):
-                completion((data, nil))
-            case .failure(let error):
-                completion((nil, error))
-            }
-        }
-    }
-    
-    /// Gets a list of courses from itslearning
-    func GetCourses(completion: @escaping ([PersonCourse])->()){
-        // TODO: Do paging of API
-        let url = "https://sdu.itslearning.com/restapi/personal/courses/v2"
-        GetRequest(url: url, type: EntityListOfPersonCourse.self) { response in
-            guard let data = response.data else {
-                print(response.error ?? "Unknown error")
-                completion([])
-                return
-            }
-            completion(data.EntityArray)
-        }
-    }
-    
-    // Get list of resources from subfolder or course
-    func GetResources(course: Int, folder: Int, completion: @escaping ([CourseResource])->()) {
-        let isRootFolder = folder == 0;
-        let url = isRootFolder ? "https://sdu.itslearning.com/restapi/personal/courses/\(course)/resources/v1" : "https://sdu.itslearning.com/restapi/personal/courses/\(course)/folders/\(folder)/resources/v1";
-        
-        GetRequest(url: url, type: CourseFolderDetails.self) { response in
-            guard let data = response.data else {
-                print(response.error ?? "Unknown error")
-                completion([])
-                return;
-            }
-            completion(data.Resources.EntityArray)
-        }
-        
     }
 }

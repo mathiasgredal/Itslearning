@@ -47,11 +47,35 @@ struct Home: View {
                 Text("Logout")
             })
             Button( action: {
-                authHandler.GetResources(course: 12507, folder: 0) { resource in
-                    print(resource)
+//                authHandler.GetRequest(url: "https://sdu.itslearning.com/Folder/processfolder.aspx?FolderID=331920") { response in
+//                    guard let data = response.data else {
+//                        print("Error: \(String(describing: response.error))")
+//                        return
+//                    }
+//
+//                    print(data)
+//                }
+//
+//                authHandler.GetResources(course: 12507, folder: 0) { resource in
+//                    print(resource)
+//                }
+                let hello: ItslearningAPI.IdType = ItslearningAPI.shared.ConvertIdToType(id: "R123")
+                switch hello {
+                case .Course(let type, let id):
+                    print(id)
+                case .Resource(let type, let id):
+                    print(id)
+                case .Unknown:
+                    print("Error")
                 }
             }, label: {
                 Text("Test API")
+            })
+            
+            Button( action: {
+                print(authHandler.GetAuthToken() ?? "No auth token")
+            }, label: {
+                Text("Print token")
             })
             
         }
