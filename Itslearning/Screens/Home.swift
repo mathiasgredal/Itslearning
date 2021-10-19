@@ -7,12 +7,6 @@
 
 import SwiftUI
 import Alamofire
-
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let welcome = try? newJSONDecoder().decode(Welcome.self, from: jsonData)
-
 import Foundation
 
 
@@ -41,12 +35,18 @@ struct Home: View {
             }, label: {
                 Text("Reload")
             })
-            Button(action: {
-                authHandler.LogOut()
-            }, label: {
-                Text("Logout")
-            })
             Button( action: {
+                let id = "R12502_299400"
+                switch ConvertIdToType(id: id) {
+                case .Course(let courseId):
+                    print("Course Id: " + String(courseId))
+                    break;
+                case .Resource(let courseId, let resourceId):
+                    print("Resource id: " + String(courseId) + ", " + String(resourceId))
+                    break;
+                default:
+                    print("Error")
+                }
 //                authHandler.GetRequest(url: "https://sdu.itslearning.com/Folder/processfolder.aspx?FolderID=331920") { response in
 //                    guard let data = response.data else {
 //                        print("Error: \(String(describing: response.error))")
@@ -59,15 +59,7 @@ struct Home: View {
 //                authHandler.GetResources(course: 12507, folder: 0) { resource in
 //                    print(resource)
 //                }
-                let hello: ItslearningAPI.IdType = ItslearningAPI.shared.ConvertIdToType(id: "R123")
-                switch hello {
-                case .Course(let type, let id):
-                    print(id)
-                case .Resource(let type, let id):
-                    print(id)
-                case .Unknown:
-                    print("Error")
-                }
+                
             }, label: {
                 Text("Test API")
             })

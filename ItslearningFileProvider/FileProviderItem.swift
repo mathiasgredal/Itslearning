@@ -23,9 +23,9 @@ class FileProviderItem: NSObject, NSFileProviderItem {
         self.title = title ?? identifier.rawValue
     }
     
-    init(identifier: NSFileProviderItemIdentifier, parent: NSFileProviderItemIdentifier) {
+    init(identifier: NSFileProviderItemIdentifier, parent: NSFileProviderItemIdentifier, title: String? = nil) {
         self.identifier = identifier
-        self.title = identifier.rawValue
+        self.title = title ?? identifier.rawValue
         self.parent = parent
     }
     

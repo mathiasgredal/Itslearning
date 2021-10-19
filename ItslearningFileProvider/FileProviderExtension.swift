@@ -27,7 +27,7 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
         
         
         // HACK: The fileprovider responds better to updates with this
-        Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.pingFinder), userInfo: nil, repeats: true)
+      //  Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.pingFinder), userInfo: nil, repeats: true)
     }
     
     @objc func pingFinder() {
@@ -75,6 +75,16 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
     }
     
     func enumerator(for containerItemIdentifier: NSFileProviderItemIdentifier, request: NSFileProviderRequest) throws -> NSFileProviderEnumerator {
+        
+        // Fail if we are stil authenticating
+        if(authHandler == nil) {
+            throw FileProviderError.notSignedIn
+        } else if((authHandler?.loading ?? true)) {
+            throw FileProviderError.loading
+        } else if(!(authHandler?.isLoggedIn ?? false)) {
+            throw FileProviderError.notSignedIn
+        }
+                
         return FileProviderEnumerator(enumeratedItemIdentifier: containerItemIdentifier, fpExtension: self)
     }
 }

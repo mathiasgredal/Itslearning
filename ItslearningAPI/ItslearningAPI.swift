@@ -7,6 +7,44 @@
 
 import OAuth2
 
+// An Id is constructed the following way:
+// - <(R)esource/(C)ourse><course id>_<folder_id>
+func ConvertToId(course: PersonCourse) -> String {
+    return "C" + String(course.CourseId)
+}
+
+func ConvertToId(resource: CourseResource) -> String {
+    return "R" + String(resource.CourseId) + "_" + String(resource.ElementId)
+}
+
+enum IdType {
+    case Unknown
+    case Resource(Int, Int)
+    case Course(Int)
+}
+
+func ConvertIdToType(id: String) -> IdType{
+    switch id.first {
+    case "C":
+        guard let courseId = Int(id.dropFirst()) else {
+            return .Unknown
+        }
+        return .Course(courseId)
+    case "R":
+        guard let underscoreOffset = id.firstIndex(of: "_")?.utf16Offset(in: id.self) else {
+            return .Unknown
+        }
+        guard let courseId = Int(id.dropFirst().dropLast(id.count-underscoreOffset)) else {
+            return .Unknown
+        }
+        guard let resourceId = Int(id.dropFirst(underscoreOffset+1)) else {
+            return .Unknown
+        }
+        return .Resource(courseId, resourceId)
+    default:
+        return .Unknown
+    }
+}
 
 
 public class ItslearningAPI {
@@ -16,35 +54,5 @@ public class ItslearningAPI {
         print("Initializing Itslearning API")
     }
 
-    func ConvertToId(course: PersonCourse) -> String {
-        return "C" + String(course.CourseId)
-    }
-
-    func ConvertToId(resource: CourseResource) -> String {
-        return "R" + String(resource.ElementId)
-    }
-
-    enum IdType {
-        case Unknown
-        case Resource(CourseResource.Type, Int)
-        case Course(PersonCourse.Type, Int)
-   }
-    
-    func ConvertIdToType(id: String) -> IdType{
-        switch id.first {
-        case "C":
-            guard let idnumber = Int(id.dropFirst()) else {
-                return .Unknown
-            }
-            return .Course(PersonCourse.self, idnumber)
-        case "R":
-            guard let idnumber = Int(id.dropFirst()) else {
-                return .Unknown
-            }
-            return .Resource(CourseResource.self, idnumber)
-        default:
-            return .Unknown
-        }
-    }
     
 }

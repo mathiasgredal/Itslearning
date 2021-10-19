@@ -29,7 +29,7 @@ extension AuthHandler {
                 completion((nil, response.error))
                 return
             }
-
+            
             self.GetRequest(url: data.Url) { response in
                 guard let data = response.data else {
                     completion((nil, response.error))
@@ -79,6 +79,5 @@ extension AuthHandler {
             }
             completion(data.Resources.EntityArray)
         }
-        
     }
 }

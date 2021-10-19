@@ -15,29 +15,12 @@ struct Login: View {
     var body: some View {
         VStack {
             Text("Please login")
-            Button("Load FP") {
-                do {
-                    try fileProviderComm.register()
-                } catch {
-                    print("Error signing in") // TODO: Show this in the ui through alert perhaps
-                }
-                
-            }
-            Button("Unload FP") {
-                do {
-                    try fileProviderComm.unregister()
-                } catch {
-                    print("Error signing in") // TODO: Show this in the ui through alert perhaps
-                }
-                
-            }
             Button("Login") {
                 do {
                     try authHandler.SignIn()
                 } catch {
                     print("Error signing in") // TODO: Show this in the ui through alert perhaps
                 }
-                
             }
         }
         

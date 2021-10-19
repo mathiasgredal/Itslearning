@@ -9,7 +9,9 @@ import SwiftUI
 
 struct Controls: View {
     var body: some View {
-        Text("View various technical details, such as access tokens and user defaults")
+        VStack {
+            Text("View various technical details, such as access tokens and user defaults")
+        }.padding(20)
     }
 }
 

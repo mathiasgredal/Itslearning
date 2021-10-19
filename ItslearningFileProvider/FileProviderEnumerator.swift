@@ -9,10 +9,14 @@ import FileProvider
 import OAuth2
 import Alamofire
 import os.log
-import Combine
 
-enum SomeKindOfPublisherError: Error {
-    case timeout
+
+// TODO: Move to seperate file
+enum FileProviderError: Error {
+    case notSignedIn
+    case loading
+    case invalidId
+    case unexpected(code: Int)
 }
 
 class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
@@ -20,7 +24,6 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
     private let fpExtension: FileProviderExtension
     private let enumeratedItemIdentifier: NSFileProviderItemIdentifier
     private let anchor = NSFileProviderSyncAnchor("an anchor".data(using: .utf8)!)
-    private var waitLoading: AnyCancellable?
     
     init(enumeratedItemIdentifier: NSFileProviderItemIdentifier, fpExtension: FileProviderExtension) {
         self.enumeratedItemIdentifier = enumeratedItemIdentifier
@@ -33,79 +36,57 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
     }
     
     func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAt page: NSFileProviderPage) {
-        /* TODO:
-         - inspect the page to determine whether this is an initial or a follow-up request
-         
-         If this is an enumerator for a directory, the root container or all directories:
-         - perform a server request to fetch directory contents
-         If this is an enumerator for the active set:
-         - perform a server request to update your local database
-         - fetch the active set from your local database
-         
-         - inform the observer about the items returned by the server (possibly multiple times)
-         - inform the observer that you are finished with this page
-         */
         logger.log("Enumerating \(String(self.enumeratedItemIdentifier.rawValue), privacy: .public)")
         
         // First we check if the authHandler is valid
         guard let authHandler = fpExtension.authHandler else {
-            logger.log("Error: Not signed in")
-            observer.didEnumerate([FileProviderItem(identifier: NSFileProviderItemIdentifier("Error - Not signed in"))])
-            observer.finishEnumerating(upTo: nil)
+            observer.finishEnumeratingWithError(FileProviderError.notSignedIn)
             return;
         }
         
-        // If it is still loading, then we wait for that to complete or timeout after 5 seconds
-//        if(authHandler.loading) {
-//            waitLoading = authHandler.$loading.setFailureType(to: SomeKindOfPublisherError.self).timeout(5, scheduler: DispatchQueue.main, customError: { .timeout }).sink(receiveCompletion: {
-//                switch $0 {
-//                case .failure(let error):
-//                    print("failure: \(error)")
-//                case .finished:
-//                    print("finished")
-//                }
-//            }, receiveValue: { loading in
-//                if(!loading && authHandler.isLoggedIn) {
-//                    if(self.enumeratedItemIdentifier == .rootContainer) {
-//                        // We should iterate courses
-//                        authHandler.GetCourses { courses in
-//                            observer.didEnumerate(courses.map {
-//                                return FileProviderItem(identifier: NSFileProviderItemIdentifier(String($0.CourseId)), title: $0.Title)
-//                            } as [FileProviderItem])
-//                            observer.finishEnumerating(upTo: nil)
-//                        }
-//                    } else if let courseId = Int(self.enumeratedItemIdentifier.rawValue) {
-//                        // We should iterate folders in course
-//                        authHandler.GetResources(course: courseId, folder: 0) { resources in
-//                            observer.didEnumerate(resources.map {
-//                                self.logger.log("\(String($0.Title), privacy: .public)")
-//                                return FileProviderItem(identifier: NSFileProviderItemIdentifier($0.Title), parent: NSFileProviderItemIdentifier(String(courseId)))
-//                            } as [FileProviderItem])
-//                            observer.finishEnumerating(upTo: nil)
-//                        }
-//                    }
-//                }
-//            })
-//        } else {
-            if(self.enumeratedItemIdentifier == .rootContainer) {
-                // We should iterate courses
-                authHandler.GetCourses { courses in
-                    observer.didEnumerate(courses.map {
-                        return FileProviderItem(identifier: NSFileProviderItemIdentifier(String($0.CourseId)), title: $0.Title)
-                    } as [FileProviderItem])
-                    observer.finishEnumerating(upTo: nil)
-                }
-            } else if let courseId = Int(self.enumeratedItemIdentifier.rawValue) {
-                // We should iterate folders in course
+        
+        if(self.enumeratedItemIdentifier == .rootContainer) {
+            // We should iterate courses
+            authHandler.GetCourses { courses in
+                observer.didEnumerate(courses.map {
+                    return FileProviderItem(identifier: NSFileProviderItemIdentifier(ConvertToId(course: $0)), parent: .rootContainer, title: $0.Title)
+                })
+                observer.finishEnumerating(upTo: nil)
+            }
+        } else {
+            switch ConvertIdToType(id: self.enumeratedItemIdentifier.rawValue) {
+            case .Course(let courseId):
+                self.logger.log("Enumerating course")
                 authHandler.GetResources(course: courseId, folder: 0) { resources in
                     observer.didEnumerate(resources.map {
-                        self.logger.log("\(String($0.Title), privacy: .public)")
-                        return FileProviderItem(identifier: NSFileProviderItemIdentifier($0.Title), parent: NSFileProviderItemIdentifier(String(courseId)))
+//                        self.logger.log("\(String($0.Title), privacy: .public)")
+                        return FileProviderItem(identifier: NSFileProviderItemIdentifier(ConvertToId(resource: $0)), parent: self.enumeratedItemIdentifier, title: $0.Title)
                     } as [FileProviderItem])
                     observer.finishEnumerating(upTo: nil)
                 }
+                break;
+            case .Resource(let courseId, let resourceId):
+                self.logger.log("Enumerating resource")
+                authHandler.GetResources(course: courseId, folder: resourceId) { resources in
+                    observer.didEnumerate(resources.map {
+//                        self.logger.log("\(String($0.Title), privacy: .public)")
+                        return FileProviderItem(identifier: NSFileProviderItemIdentifier(ConvertToId(resource: $0)), parent: self.enumeratedItemIdentifier, title: $0.Title)
+                    } as [FileProviderItem])
+                    observer.finishEnumerating(upTo: nil)
+                }
+                break;
+            default:
+                observer.finishEnumeratingWithError(FileProviderError.invalidId)
             }
+        }
+//
+//        if let courseId = Int(self.enumeratedItemIdentifier.rawValue) {
+//            // An identifier is build up the following way:
+//            // <(R)esource/(C)ourse>_<course id>_<folder id or 0>
+//            // We should iterate folders in course
+//
 //        }
+        //        }
         
     }
     
@@ -126,3 +107,17 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
         completionHandler(anchor)
     }
 }
+
+
+/* TODO:
+ - inspect the page to determine whether this is an initial or a follow-up request
+ 
+ If this is an enumerator for a directory, the root container or all directories:
+ - perform a server request to fetch directory contents
+ If this is an enumerator for the active set:
+ - perform a server request to update your local database
+ - fetch the active set from your local database
+ 
+ - inform the observer about the items returned by the server (possibly multiple times)
+ - inform the observer that you are finished with this page
+ */

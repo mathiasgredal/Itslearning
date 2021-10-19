@@ -9,7 +9,9 @@ import SwiftUI
 
 struct Settings: View {
     var body: some View {
-        Text("Various settings such as login with another acccount")
+        VStack {
+            Text("Various settings such as login with another acccount")
+        }.padding(20)
     }
 }
 

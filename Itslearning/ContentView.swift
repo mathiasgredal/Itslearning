@@ -11,40 +11,12 @@ import FileProvider
 import Combine
 import OAuth2
 
-class FileProviderComm : NSObject, ObservableObject {
-    let identifier = NSFileProviderDomainIdentifier("gredal.itslearning.itslearningfileprovider")
-    let domain: NSFileProviderDomain
-    let manager: NSFileProviderManager
-    
-    override init() {
-        self.domain = NSFileProviderDomain(identifier: identifier, displayName:"Itslearning")
-        self.manager = NSFileProviderManager.init(for: domain)!
-        super.init()
-        
-        UserDefaults.sharedContainerDefaults.set("test 1" as AnyObject, forKey: "key1")
-        UserDefaults.sharedContainerDefaults.synchronize()
-    }
-    
-    func register() {
-        NSFileProviderManager.add(domain) { error in
-            print("Add file provider domain: \(error as NSError?)")
-        }
-    }
-    
-    func unregister() {
-        NSFileProviderManager.remove(domain) { error in
-            print("Add file provider domain: \(error as NSError?)")
-        }
-    }
-}
-
-
 struct ContentView: View {
     @ObservedObject var authHandler: AuthHandler;
     @ObservedObject var fileProviderComm: FileProviderComm;
-
+    
     init() {
-        authHandler = AuthHandler()
+        authHandler = AuthHandler();
         fileProviderComm = FileProviderComm();
     }
     
@@ -55,38 +27,15 @@ struct ContentView: View {
                 ProgressView()
             } else {
                 if authHandler.isLoggedIn {
-                    Home().environmentObject(authHandler).environmentObject(fileProviderComm)
+                    Main().environmentObject(authHandler).environmentObject(fileProviderComm)
                 } else {
                     Login().environmentObject(authHandler).environmentObject(fileProviderComm)
                 }
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
-        
-//
-//        VStack {
-//            HStack {
-//                Button(action: {
-//                    authHandler.LogOut()
-//                }, label: {
-//                    Text("Clear User Defaults")
-//                })
-//                Button(action: {
-//                    print("Logging in")
-//                    do {
-//                            try authHandler.SignIn()
-//                    } catch {
-//                        print("Error")
-//                    }
-//                } , label: {
-//                    Text("Relogin")
-//                })
-//            }
-//            ProgressView()
-//        }
-//        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        
     }
 }
+
 
 
 //        NavigationView {
