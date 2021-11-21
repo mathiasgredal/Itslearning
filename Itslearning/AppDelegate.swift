@@ -5,20 +5,18 @@
 //  Created by Mathias Gredal on 15/09/2021.
 //
 
-import FileProvider
 import Cocoa
 import SwiftUI
-import OAuth2
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
     var window: NSWindow!
-    
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView()
-        
+
         // Create the window and set the content view.
         window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
@@ -30,6 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.contentView = NSHostingView(rootView: contentView)
         window.title = "Itslearning control panel"
         window.makeKeyAndOrderFront(nil)
+
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {

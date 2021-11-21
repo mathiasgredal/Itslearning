@@ -39,55 +39,37 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
         logger.log("Enumerating \(String(self.enumeratedItemIdentifier.rawValue), privacy: .public)")
         
         // First we check if the authHandler is valid
-        guard let authHandler = fpExtension.authHandler else {
+        if !fpExtension.authHandler.isLoggedIn || fpExtension.authHandler.loading {
+            let error = NSError(domain: NSFileProviderError.errorDomain,
+                                code: NSFileProviderError.notAuthenticated.rawValue, userInfo: [NSLocalizedDescriptionKey: "The user credentials cannot be verified"])
+            observer.finishEnumeratingWithError(error)
             observer.finishEnumeratingWithError(FileProviderError.notSignedIn)
             return;
         }
         
         
         if(self.enumeratedItemIdentifier == .rootContainer) {
-            // We should iterate courses
-            authHandler.GetCourses { courses in
-                observer.didEnumerate(courses.map {
-                    return FileProviderItem(identifier: NSFileProviderItemIdentifier(ConvertToId(course: $0)), parent: .rootContainer, title: $0.Title)
+            // Iterate courses
+            ItslearningAPI.GetCourses(fpExtension.authHandler) { response in
+                observer.didEnumerate(response.data.map {
+                    return FileProviderCourseItem(item: $0)
                 })
                 observer.finishEnumerating(upTo: nil)
             }
         } else {
-            switch ConvertIdToType(id: self.enumeratedItemIdentifier.rawValue) {
-            case .Course(let courseId):
-                self.logger.log("Enumerating course")
-                authHandler.GetResources(course: courseId, folder: 0) { resources in
+            do {
+                let itemId = try ItemID(idString: self.enumeratedItemIdentifier.rawValue)
+                ItslearningAPI.GetResources(fpExtension.authHandler, itemId: itemId) { resources in
                     observer.didEnumerate(resources.map {
-//                        self.logger.log("\(String($0.Title), privacy: .public)")
-                        return FileProviderItem(identifier: NSFileProviderItemIdentifier(ConvertToId(resource: $0)), parent: self.enumeratedItemIdentifier, title: $0.Title)
-                    } as [FileProviderItem])
+                        return FileProviderResourceItem(item: $0)
+                    })
                     observer.finishEnumerating(upTo: nil)
                 }
-                break;
-            case .Resource(let courseId, let resourceId):
-                self.logger.log("Enumerating resource")
-                authHandler.GetResources(course: courseId, folder: resourceId) { resources in
-                    observer.didEnumerate(resources.map {
-//                        self.logger.log("\(String($0.Title), privacy: .public)")
-                        return FileProviderItem(identifier: NSFileProviderItemIdentifier(ConvertToId(resource: $0)), parent: self.enumeratedItemIdentifier, title: $0.Title)
-                    } as [FileProviderItem])
-                    observer.finishEnumerating(upTo: nil)
-                }
-                break;
-            default:
+                
+            } catch {
                 observer.finishEnumeratingWithError(FileProviderError.invalidId)
             }
         }
-//
-//        if let courseId = Int(self.enumeratedItemIdentifier.rawValue) {
-//            // An identifier is build up the following way:
-//            // <(R)esource/(C)ourse>_<course id>_<folder id or 0>
-//            // We should iterate folders in course
-//
-//        }
-        //        }
-        
     }
     
     func enumerateChanges(for observer: NSFileProviderChangeObserver, from anchor: NSFileProviderSyncAnchor) {

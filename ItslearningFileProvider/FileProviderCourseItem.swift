@@ -9,21 +9,19 @@ import Foundation
 import FileProvider
 import UniformTypeIdentifiers
 
-
-// TODO: implement an initializer to create an item from your extension's backing model
-// TODO: implement the accessors to return the values from your extension's backing model
 class FileProviderCourseItem: NSObject, NSFileProviderItem {
-    private let identifier: NSFileProviderItemIdentifier
-    private let title: String
-
+    private let item: PersonCourse
     
     init(item: PersonCourse) {
-        self.identifier = NSFileProviderItemIdentifier(rawValue: "hello")
-        self.title = "hello"
+        self.item = item
     }
     
     var itemIdentifier: NSFileProviderItemIdentifier {
-        return identifier
+        guard let itemId = item.itemId?.description else {
+            return .rootContainer
+        }
+        
+        return NSFileProviderItemIdentifier(rawValue: itemId)
     }
     
     var parentItemIdentifier: NSFileProviderItemIdentifier {
@@ -31,19 +29,22 @@ class FileProviderCourseItem: NSObject, NSFileProviderItem {
     }
     
     var capabilities: NSFileProviderItemCapabilities {
-        return .allowsAll
+        return .allowsReading
     }
     
     var itemVersion: NSFileProviderItemVersion {
         NSFileProviderItemVersion(contentVersion: "a content version".data(using: .utf8)!, metadataVersion: "a metadata version".data(using: .utf8)!)
     }
     
+    var fileSystemFlags: NSFileProviderFileSystemFlags {
+        return .userReadable
+    }
+    
     var filename: String {
-        return self.title
+        return item.Title
     }
     
     var contentType: UTType {
         return .folder
-        //return identifier == NSFileProviderItemIdentifier.rootContainer ? .folder : .plainText
     }
 }

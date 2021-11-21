@@ -13,25 +13,35 @@ import UniformTypeIdentifiers
 // TODO: implement an initializer to create an item from your extension's backing model
 // TODO: implement the accessors to return the values from your extension's backing model
 class FileProviderResourceItem: NSObject, NSFileProviderItem {
-    private let identifier: NSFileProviderItemIdentifier
-    private let title: String
-
+    private let item: CourseResource
     
     init(item: CourseResource) {
-        self.identifier = NSFileProviderItemIdentifier(rawValue: "hello")
-        self.title = "hello"
+        self.item = item
     }
     
     var itemIdentifier: NSFileProviderItemIdentifier {
-        return identifier
+        guard let itemId = item.itemId?.description else {
+            return .rootContainer
+        }
+        
+        return NSFileProviderItemIdentifier(rawValue: itemId)
     }
     
     var parentItemIdentifier: NSFileProviderItemIdentifier {
-        return .rootContainer
+        do {
+            guard let parentId = try item.itemId?.getContainingFolder() else {
+                return .rootContainer
+            }
+            
+            return NSFileProviderItemIdentifier(rawValue: parentId.description)
+
+        } catch {
+            return .rootContainer
+        }
     }
     
     var capabilities: NSFileProviderItemCapabilities {
-        return .allowsAll
+        return .allowsReading
     }
     
     var itemVersion: NSFileProviderItemVersion {
@@ -39,11 +49,10 @@ class FileProviderResourceItem: NSObject, NSFileProviderItem {
     }
     
     var filename: String {
-        return self.title
+        return item.Title
     }
     
     var contentType: UTType {
-        return .folder
-        //return identifier == NSFileProviderItemIdentifier.rootContainer ? .folder : .plainText
+        return item.ElementType == .Folder ? .folder : .item
     }
 }

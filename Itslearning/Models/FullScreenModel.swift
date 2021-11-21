@@ -16,7 +16,7 @@ public class FullScreenModel: ObservableObject {
     var enterFullScreenCancellabel : AnyCancellable?
     var exitFullScreenCancellabel : AnyCancellable?
     
-    init() {
+    init() {        
         enterFullScreenCancellabel = NotificationCenter.default.publisher(for: NSWindow.willEnterFullScreenNotification).sink(receiveValue: { _ in
             self.isFullScreen = true
         })

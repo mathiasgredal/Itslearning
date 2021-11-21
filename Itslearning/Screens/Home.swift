@@ -8,6 +8,7 @@
 import SwiftUI
 import Alamofire
 import Foundation
+import FileProvider
 
 
 struct Home: View {
@@ -36,29 +37,39 @@ struct Home: View {
                 Text("Reload")
             })
             Button( action: {
-                let id = "R12502_299400"
-                switch ConvertIdToType(id: id) {
-                case .Course(let courseId):
-                    print("Course Id: " + String(courseId))
-                    break;
-                case .Resource(let courseId, let resourceId):
-                    print("Resource id: " + String(courseId) + ", " + String(resourceId))
-                    break;
-                default:
-                    print("Error")
+                do {
+                    ItslearningAPI.GetResource(authHandler, resourceId: try ItemID(idString: "12507_331920_438573")) { response in
+                        guard let item = response.data else {
+                            print("Error123")
+                            return
+                        }
+                        print(item)
+                    }
+                    /*
+                    ItslearningAPI.GetResource(authHandler, resourceId: try ItemID(idString: "12507_331920_391030_391032")) { response in
+                        guard let data = response.data else {
+                            print("Error")
+                            return
+                        }
+                        print(data)
+                    }*/
+                } catch {
+                    print("Error2")
                 }
-//                authHandler.GetRequest(url: "https://sdu.itslearning.com/Folder/processfolder.aspx?FolderID=331920") { response in
-//                    guard let data = response.data else {
-//                        print("Error: \(String(describing: response.error))")
-//                        return
-//                    }
-//
-//                    print(data)
-//                }
-//
-//                authHandler.GetResources(course: 12507, folder: 0) { resource in
-//                    print(resource)
-//                }
+                
+                //                authHandler.GetRequest(url: "https://sdu.itslearning.com/Folder/processfolder.aspx?FolderID=331920") { response in
+                //                    guard let data = response.data else {
+                //                        print("Error: \(String(describing: response.error))")
+                //                        return
+                //                    }
+                //
+                //                    print(data)
+                //                }
+                //
+                //                authHandler.GetResources(course: 12507, folder: 0) { resource in
+                //                    print(resource)
+                //                }
+                //
                 
             }, label: {
                 Text("Test API")

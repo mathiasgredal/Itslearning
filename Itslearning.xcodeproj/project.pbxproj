@@ -7,14 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D06C9C2C25F7AFD200354820 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06C9C2B25F7AFD200354820 /* AppDelegate.swift */; };
-		D06C9C3025F7AFD400354820 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D06C9C2F25F7AFD400354820 /* Assets.xcassets */; };
-		D06C9C3325F7AFD400354820 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D06C9C3125F7AFD400354820 /* Main.storyboard */; };
 		D06C9C4225F7B01300354820 /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06C9C4125F7B01300354820 /* FileProviderExtension.swift */; };
 		D06C9C4425F7B01300354820 /* FileProviderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06C9C4325F7B01300354820 /* FileProviderItem.swift */; };
 		D06C9C4625F7B01300354820 /* FileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06C9C4525F7B01300354820 /* FileProviderEnumerator.swift */; };
 		D06C9C4B25F7B01300354820 /* ItslearningFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D06C9C3F25F7B01300354820 /* ItslearningFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D0FA53D026300F1700C32328 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D0FA53CF26300F1700C32328 /* README.md */; };
 		DA0266AE2715A2FF004DF9DB /* SSOResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0266AC2715A2FC004DF9DB /* SSOResponse.swift */; };
 		DA0266AF2715A2FF004DF9DB /* SSOResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0266AC2715A2FC004DF9DB /* SSOResponse.swift */; };
 		DA0266B12715A4FE004DF9DB /* AuthHandler+REST.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0266B02715A4FE004DF9DB /* AuthHandler+REST.swift */; };
@@ -22,7 +18,8 @@
 		DA0266B82715F3B2004DF9DB /* Fileprovider.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA0266B72715F3B2004DF9DB /* Fileprovider.xcassets */; };
 		DA3674D6270B00FC003F39E6 /* ItslearningAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */; };
 		DA3674D7270B00FC003F39E6 /* ItslearningAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */; };
-		DA5A9B9326FFA51700B25514 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5A9B9226FFA51700B25514 /* Storyboard.storyboard */; };
+		DA5455D4271F9BBA00A40CE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D06C9C2F25F7AFD400354820 /* Assets.xcassets */; };
+		DA5455D7271F9BFE00A40CE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D06C9C3125F7AFD400354820 /* Main.storyboard */; };
 		DA6B03BE26E957C400B46E1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03BD26E957C400B46E1D /* ContentView.swift */; };
 		DA6B03DD26EBF91D00B46E1D /* ItslearningAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = DA6B03DB26EBF91D00B46E1D /* ItslearningAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA6B03E026EBF91D00B46E1D /* ItslearningAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */; };
@@ -40,6 +37,9 @@
 		DA7D154D271F7C6D00947AB5 /* FullScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7D154C271F7C6D00947AB5 /* FullScreenModel.swift */; };
 		DA89DF7526F3849400D0C114 /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = DA89DF7426F3849400D0C114 /* OAuth2 */; };
 		DA89DF7726F3849700D0C114 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DA89DF7626F3849700D0C114 /* Alamofire */; };
+		DAA76B94272608DA008DEE7E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = DAA76B93272608DA008DEE7E /* SwiftSoup */; };
+		DAAB787927488CD600E7997C /* ItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB787727488CCE00E7997C /* ItemID.swift */; };
+		DAAB787A27488CD600E7997C /* ItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB787727488CCE00E7997C /* ItemID.swift */; };
 		DABBCF6B2707B16C005E9DDA /* ElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A9B9926FFAA3700B25514 /* ElementType.swift */; };
 		DABBCF6D2707B16C005E9DDA /* CourseFolderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABBCF672707AEC1005E9DDA /* CourseFolderDetails.swift */; };
 		DABBCF6E2707B16C005E9DDA /* PersonCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A9B9526FFA84F00B25514 /* PersonCourse.swift */; };
@@ -62,6 +62,7 @@
 		DAF1B8C026F29333007BCDE2 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1B8BF26F29333007BCDE2 /* Home.swift */; };
 		DAF1B8C226F29389007BCDE2 /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1B8C126F29389007BCDE2 /* Controls.swift */; };
 		DAF1B8C426F293CE007BCDE2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1B8C326F293CE007BCDE2 /* Settings.swift */; };
+		DAF38E592728BD8E00192923 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF38E582728BD8E00192923 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,7 +127,6 @@
 
 /* Begin PBXFileReference section */
 		D06C9C2825F7AFD200354820 /* Itslearning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Itslearning.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D06C9C2B25F7AFD200354820 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D06C9C2F25F7AFD400354820 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D06C9C3225F7AFD400354820 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D06C9C3425F7AFD400354820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -141,7 +141,6 @@
 		DA0266AC2715A2FC004DF9DB /* SSOResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSOResponse.swift; sourceTree = "<group>"; };
 		DA0266B02715A4FE004DF9DB /* AuthHandler+REST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthHandler+REST.swift"; sourceTree = "<group>"; };
 		DA0266B72715F3B2004DF9DB /* Fileprovider.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Fileprovider.xcassets; sourceTree = "<group>"; };
-		DA5A9B9226FFA51700B25514 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		DA5A9B9526FFA84F00B25514 /* PersonCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCourse.swift; sourceTree = "<group>"; };
 		DA5A9B9726FFA9B000B25514 /* CourseResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseResource.swift; sourceTree = "<group>"; };
 		DA5A9B9926FFAA3700B25514 /* ElementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementType.swift; sourceTree = "<group>"; };
@@ -157,6 +156,8 @@
 		DA7D1547271F7BCA00947AB5 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		DA7D154A271F7C4300947AB5 /* FileProviderComm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderComm.swift; sourceTree = "<group>"; };
 		DA7D154C271F7C6D00947AB5 /* FullScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenModel.swift; sourceTree = "<group>"; };
+		DA7D154E271F875000947AB5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		DAAB787727488CCE00E7997C /* ItemID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemID.swift; sourceTree = "<group>"; };
 		DABBCF652707ADE2005E9DDA /* EntityListOfPersonCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityListOfPersonCourse.swift; sourceTree = "<group>"; };
 		DABBCF672707AEC1005E9DDA /* CourseFolderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseFolderDetails.swift; sourceTree = "<group>"; };
 		DAC6507526EF8E160029E2B1 /* OAuth2RetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2RetryHandler.swift; sourceTree = "<group>"; };
@@ -165,6 +166,7 @@
 		DAF1B8BF26F29333007BCDE2 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		DAF1B8C126F29389007BCDE2 /* Controls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controls.swift; sourceTree = "<group>"; };
 		DAF1B8C326F293CE007BCDE2 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		DAF38E582728BD8E00192923 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 			files = (
 				DA89DF7526F3849400D0C114 /* OAuth2 in Frameworks */,
 				DA89DF7726F3849700D0C114 /* Alamofire in Frameworks */,
+				DAA76B94272608DA008DEE7E /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,13 +230,12 @@
 			children = (
 				DA7D1549271F7C3500947AB5 /* Models */,
 				DAF1B8BE26F29320007BCDE2 /* Screens */,
-				D06C9C2B25F7AFD200354820 /* AppDelegate.swift */,
+				DAF38E582728BD8E00192923 /* AppDelegate.swift */,
+				DA6B03BD26E957C400B46E1D /* ContentView.swift */,
 				D06C9C2F25F7AFD400354820 /* Assets.xcassets */,
 				D06C9C3125F7AFD400354820 /* Main.storyboard */,
 				D06C9C3425F7AFD400354820 /* Info.plist */,
 				D06C9C3525F7AFD400354820 /* Itslearning.entitlements */,
-				DA6B03BD26E957C400B46E1D /* ContentView.swift */,
-				DA5A9B9226FFA51700B25514 /* Storyboard.storyboard */,
 			);
 			path = Itslearning;
 			sourceTree = "<group>";
@@ -269,6 +271,7 @@
 		DA6B03CF26E962C400B46E1D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA7D154E271F875000947AB5 /* AppKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			children = (
 				DA5A9B9426FFA84300B25514 /* Types */,
 				DAE1BC9626F10A8D00DE8470 /* OAuth2 */,
+				DAAB787727488CCE00E7997C /* ItemID.swift */,
 				DA6B03EB26EBF97800B46E1D /* Defaults.swift */,
 				DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */,
 				DA6B03DB26EBF91D00B46E1D /* ItslearningAPI.h */,
@@ -299,8 +303,8 @@
 			isa = PBXGroup;
 			children = (
 				DAC6507526EF8E160029E2B1 /* OAuth2RetryHandler.swift */,
-				DAE1BC9726F10ACF00DE8470 /* AuthHandler.swift */,
 				DAE1BC9B26F10DDC00DE8470 /* AuthToken.swift */,
+				DAE1BC9726F10ACF00DE8470 /* AuthHandler.swift */,
 				DA0266B02715A4FE004DF9DB /* AuthHandler+REST.swift */,
 			);
 			path = OAuth2;
@@ -309,11 +313,11 @@
 		DAF1B8BE26F29320007BCDE2 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				DA7D1547271F7BCA00947AB5 /* Main.swift */,
 				DAF1B8BF26F29333007BCDE2 /* Home.swift */,
 				DAF1B8C126F29389007BCDE2 /* Controls.swift */,
 				DAF1B8C326F293CE007BCDE2 /* Settings.swift */,
 				DA6EFDC126F3F4FB00AEFCFA /* Login.swift */,
-				DA7D1547271F7BCA00947AB5 /* Main.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -397,6 +401,7 @@
 			packageProductDependencies = (
 				DA89DF7426F3849400D0C114 /* OAuth2 */,
 				DA89DF7626F3849700D0C114 /* Alamofire */,
+				DAA76B93272608DA008DEE7E /* SwiftSoup */,
 			);
 			productName = ItslearningAPI;
 			productReference = DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */;
@@ -409,7 +414,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					D06C9C2725F7AFD200354820 = {
 						CreatedOnToolsVersion = 12.5;
@@ -419,7 +424,7 @@
 					};
 					DA6B03D826EBF91D00B46E1D = {
 						CreatedOnToolsVersion = 12.5;
-						LastSwiftMigration = 1250;
+						LastSwiftMigration = 1310;
 					};
 				};
 			};
@@ -435,6 +440,7 @@
 			packageReferences = (
 				DA6B03F826EC1EB500B46E1D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				DAE1BC8F26F1093600DE8470 /* XCRemoteSwiftPackageReference "OAuth2" */,
+				DAA76B92272608DA008DEE7E /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = D06C9C2925F7AFD200354820 /* Products */;
 			projectDirPath = "";
@@ -452,10 +458,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0FA53D026300F1700C32328 /* README.md in Resources */,
-				DA5A9B9326FFA51700B25514 /* Storyboard.storyboard in Resources */,
-				D06C9C3025F7AFD400354820 /* Assets.xcassets in Resources */,
-				D06C9C3325F7AFD400354820 /* Main.storyboard in Resources */,
+				DA5455D7271F9BFE00A40CE0 /* Main.storyboard in Resources */,
+				DA5455D4271F9BBA00A40CE0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,7 +488,6 @@
 				DA6B03F426EC133100B46E1D /* Defaults.swift in Sources */,
 				DA3674D6270B00FC003F39E6 /* ItslearningAPI.swift in Sources */,
 				DA6EFDC226F3F4FB00AEFCFA /* Login.swift in Sources */,
-				D06C9C2C25F7AFD200354820 /* AppDelegate.swift in Sources */,
 				DA7D154B271F7C4300947AB5 /* FileProviderComm.swift in Sources */,
 				DA0266B12715A4FE004DF9DB /* AuthHandler+REST.swift in Sources */,
 				DAE1BC9A26F10AF100DE8470 /* AuthHandler.swift in Sources */,
@@ -500,6 +503,8 @@
 				DAF1B8C026F29333007BCDE2 /* Home.swift in Sources */,
 				DABBCF6F2707B16C005E9DDA /* CourseResource.swift in Sources */,
 				DABBCF6D2707B16C005E9DDA /* CourseFolderDetails.swift in Sources */,
+				DAF38E592728BD8E00192923 /* AppDelegate.swift in Sources */,
+				DAAB787927488CD600E7997C /* ItemID.swift in Sources */,
 				DABBCF702707B16C005E9DDA /* EntityListOfPersonCourse.swift in Sources */,
 				DA0266AF2715A2FF004DF9DB /* SSOResponse.swift in Sources */,
 			);
@@ -522,6 +527,7 @@
 				DAE1BC9E26F114E200DE8470 /* OAuth2RetryHandler.swift in Sources */,
 				DA75743B270DC009002CADAF /* FileProviderCourseItem.swift in Sources */,
 				DAE1BC9926F10AF100DE8470 /* AuthHandler.swift in Sources */,
+				DAAB787A27488CD600E7997C /* ItemID.swift in Sources */,
 				D06C9C4425F7B01300354820 /* FileProviderItem.swift in Sources */,
 				DABBCF722707B804005E9DDA /* CourseFolderDetails.swift in Sources */,
 				DAE1BC9D26F10DDC00DE8470 /* AuthToken.swift in Sources */,
@@ -603,6 +609,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -619,7 +626,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -664,6 +671,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -674,7 +682,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -686,10 +694,11 @@
 		D06C9C3925F7AFD400354820 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Itslearning/Itslearning.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = ZF8FHQ365P;
@@ -709,10 +718,11 @@
 		D06C9C3A25F7AFD400354820 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Itslearning/Itslearning.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = ZF8FHQ365P;
@@ -732,8 +742,9 @@
 		D06C9C4D25F7B01300354820 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = FileproviderIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = FileProviderIcon;
 				CODE_SIGN_ENTITLEMENTS = ItslearningFileProvider/ItslearningFileProvider.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZF8FHQ365P;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -754,8 +765,9 @@
 		D06C9C4E25F7B01300354820 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = FileproviderIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = FileProviderIcon;
 				CODE_SIGN_ENTITLEMENTS = ItslearningFileProvider/ItslearningFileProvider.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = ZF8FHQ365P;
@@ -883,6 +895,14 @@
 				minimumVersion = 5.4.3;
 			};
 		};
+		DAA76B92272608DA008DEE7E /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.3;
+			};
+		};
 		DAE1BC8F26F1093600DE8470 /* XCRemoteSwiftPackageReference "OAuth2" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/p2/OAuth2.git";
@@ -908,6 +928,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DA6B03F826EC1EB500B46E1D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		DAA76B93272608DA008DEE7E /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAA76B92272608DA008DEE7E /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 		DAC6507B26EF9AAE0029E2B1 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

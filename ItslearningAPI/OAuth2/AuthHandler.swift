@@ -129,7 +129,7 @@ class AuthHandler: ObservableObject {
                 completion(false)
             }
             else {
-                self.SaveTokens()
+                self.SaveTokens() // TODO: Return false if this method fails
                 completion(true)
             }
         }

@@ -51,33 +51,4 @@ extension AuthHandler {
             }
         }
     }
-    
-    /// Gets a list of courses from itslearning
-    func GetCourses(completion: @escaping ([PersonCourse])->()){
-        // TODO: Do paging of API
-        let url = "https://sdu.itslearning.com/restapi/personal/courses/v2"
-        GetRequest(url: url, type: EntityListOfPersonCourse.self) { response in
-            guard let data = response.data else {
-                print(response.error ?? "Unknown error")
-                completion([])
-                return
-            }
-            completion(data.EntityArray)
-        }
-    }
-    
-    // Get list of resources from subfolder or course
-    func GetResources(course: Int, folder: Int, completion: @escaping ([CourseResource])->()) {
-        let isRootFolder = folder == 0;
-        let url = isRootFolder ? "https://sdu.itslearning.com/restapi/personal/courses/\(course)/resources/v1" : "https://sdu.itslearning.com/restapi/personal/courses/\(course)/folders/\(folder)/resources/v1";
-        
-        GetRequest(url: url, type: CourseFolderDetails.self) { response in
-            guard let data = response.data else {
-                print(response.error ?? "Unknown error")
-                completion([])
-                return;
-            }
-            completion(data.Resources.EntityArray)
-        }
-    }
 }

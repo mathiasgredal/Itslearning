@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct PersonCourse: Codable {
+    var itemId: ItemID?;
     let Title: String;
     let LastUpdatedUtc: String;
     let NewNotificationsCount: Int;

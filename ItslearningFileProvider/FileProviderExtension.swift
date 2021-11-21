@@ -9,13 +9,14 @@ import FileProvider
 import os.log
 import OAuth2
 import Foundation
+import Alamofire
 
 
 class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
     public let logger = Logger(subsystem: "sdu.magre21.itslearning.itslearningfileprovider", category: "extension")
     public let domain: NSFileProviderDomain
     public var manager: NSFileProviderManager
-    public var authHandler: AuthHandler?
+    public var authHandler: AuthHandler
     
     required public init(domain: NSFileProviderDomain) {
         self.logger.debug("Initializing file provider extension")
@@ -24,14 +25,12 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
         self.authHandler = AuthHandler()
         super.init()
         
-        
-        
         // HACK: The fileprovider responds better to updates with this
-      //  Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.pingFinder), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(self.pingFinder), userInfo: nil, repeats: true)
     }
     
     @objc func pingFinder() {
-        manager.signalEnumerator(for: .rootContainer) { error in
+        manager.signalEnumerator(for: .workingSet) { error in
             guard error == nil else {
                 self.logger.debug("Error: \(String(describing: error), privacy: .public)")
                 return
@@ -46,12 +45,41 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
     
     // Resolve item from identifier
     func item(for identifier: NSFileProviderItemIdentifier, request: NSFileProviderRequest, completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) -> Progress {
-        completionHandler(FileProviderItem(identifier: identifier), nil)
+        self.logger.debug("Resolving item from identifier: \(String(describing: identifier.rawValue), privacy: .public)")
+        do {
+            let itemId = try ItemID(idString: identifier.rawValue)
+            
+            switch itemId.itemType {
+            case .Course:
+                ItslearningAPI.GetCourse(authHandler, itemID: itemId) { response in
+                    guard let course = response.course else {
+                        completionHandler(nil, response.error)
+                        return
+                    }
+                    completionHandler(FileProviderCourseItem(item: course), nil)
+                }
+                break
+            case .Resource:
+                ItslearningAPI.GetResource(authHandler, resourceId: itemId) { response in
+                    guard let data = response.data else {
+                        completionHandler(nil, response.error)
+                        return
+                    }
+                    completionHandler(FileProviderResourceItem(item: data), nil)
+                    
+                }
+                break
+            }
+        } catch let error {
+            completionHandler(nil, error)
+        }
+        
         return Progress()
     }
     
     // TODO: implement fetching of the contents for the itemIdentifier at the specified version
     func fetchContents(for itemIdentifier: NSFileProviderItemIdentifier, version requestedVersion: NSFileProviderItemVersion?, request: NSFileProviderRequest, completionHandler: @escaping (URL?, NSFileProviderItem?, Error?) -> Void) -> Progress {
+        self.logger.debug("Fetch contents: \(String(describing: itemIdentifier.rawValue), privacy: .public)")
         completionHandler(nil, nil, NSError(domain: NSCocoaErrorDomain, code: NSFeatureUnsupportedError, userInfo:[:]))
         return Progress()
     }
@@ -75,16 +103,13 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
     }
     
     func enumerator(for containerItemIdentifier: NSFileProviderItemIdentifier, request: NSFileProviderRequest) throws -> NSFileProviderEnumerator {
-        
         // Fail if we are stil authenticating
-        if(authHandler == nil) {
-            throw FileProviderError.notSignedIn
-        } else if((authHandler?.loading ?? true)) {
+        if(authHandler.loading) {
             throw FileProviderError.loading
-        } else if(!(authHandler?.isLoggedIn ?? false)) {
+        } else if(!authHandler.isLoggedIn) {
             throw FileProviderError.notSignedIn
         }
-                
+        
         return FileProviderEnumerator(enumeratedItemIdentifier: containerItemIdentifier, fpExtension: self)
     }
 }

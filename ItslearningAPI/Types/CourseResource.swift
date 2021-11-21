@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct CourseResource: Codable {
+    var itemId: ItemID?;
     let Title: String
     let ElementId: Int
     let ElementType: ElementType
