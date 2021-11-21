@@ -46,6 +46,12 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
     // Resolve item from identifier
     func item(for identifier: NSFileProviderItemIdentifier, request: NSFileProviderRequest, completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) -> Progress {
         self.logger.debug("Resolving item from identifier: \(String(describing: identifier.rawValue), privacy: .public)")
+        // Handle som built-in identifiers
+        if(identifier == .rootContainer || identifier == .trashContainer || identifier == .workingSet) {
+            completionHandler(FileProviderItem(identifier: identifier), nil)
+            return Progress()
+        }
+        
         do {
             let itemId = try ItemID(idString: identifier.rawValue)
             
