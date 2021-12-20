@@ -40,6 +40,7 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
         
         // First we check if the authHandler is valid
         if !fpExtension.authHandler.isLoggedIn || fpExtension.authHandler.loading {
+            self.logger.log("Not signed in")
             let error = NSError(domain: NSFileProviderError.errorDomain,
                                 code: NSFileProviderError.notAuthenticated.rawValue, userInfo: [NSLocalizedDescriptionKey: "The user credentials cannot be verified"])
             observer.finishEnumeratingWithError(error)

@@ -87,70 +87,64 @@ public enum ItslearningAPI {
         }
     }
     
-    /*
-     /// <#Description#>
-     /// - Parameters:
-     ///   - authHandler: <#authHandler description#>
-     ///   - itemId: <#itemId description#>
-     ///   - completion: <#completion description#>
-     /// - Returns: <#description#>
-     static func GetItemParent(_ authHandler: AuthHandler, resourceId: Int, completion: @escaping ((data: CourseResource?, error: Error?))->()) {
-     let urlSSO = "https://sdu.itslearning.com/Folder/processfolder.aspx?FolderID=\(resourceId)"
-     authHandler.GetRequestSSO(url: urlSSO) { response in
-     // Guard against request errors
-     guard let data = response.data else {
-     completion((nil, response.error))
-     return
-     }
-     
-     do {
-     // Parse HTML
-     let doc: Document = try SwiftSoup.parse(data)
-     
-     // Select button for going a directory up
-     let selector = "#ctl00_ContentPlaceHolder_ProcessFolderGrid_GTB_ToolbarUpOneLevelLink"
-     guard let parentFolderURL = try doc.select(selector).first()?.attr("href") else {
-     // No button was found, which means that we are selecting the root folder for the course or we have selected an invalid
-     completion((nil, NSError(domain: "", code: 0, userInfo: [ NSLocalizedDescriptionKey: "HTML doesn't contain specified link"])))
-     return
-     }
-     
-     // Get the folder id from query item in link(eg. /Folder/processfolder.aspx?FolderID=12345)
-     //                guard let folderID = URLComponents(string: parentFolderURL)?.queryItems?.filter({$0.name == "FolderID"}).first?.value else {
-     //                    completion((nil, NSError(domain: "", code: 0, userInfo: [ NSLocalizedDescriptionKey: "Specified link doesn't contain folderID"])))
-     //                    return
-     //                }
-     
-     // Get the courseResource
-     
-     
-     print(parentFolderURL)
-     completion((nil, nil))
-     return
-     } catch let error as Exception {
-     completion((nil, error))
-     } catch {
-     completion((nil, NSError(domain: "", code: 0, userInfo: [ NSLocalizedDescriptionKey: "Unknown error when parsing HTML"])))
-     }
-     
-     //completion(("\(data)", nil))
-     }
-     
-     // Create an SSO request
-     // Parse HTML and find the go up directory id
-     // Get the CourseResource using this https://sdu.itslearning.com/restapi/personal/courses/resources/311300/v1
-     // Return it
-     
-     
-     //        let url = isRootFolder ? "https://sdu.itslearning.com/restapi/personal/courses/\(course)/resources/v1" : "https://sdu.itslearning.com/restapi/personal/courses/\(course)/folders/\(folder)/resources/v1";
-     //
-     //        authHandler.GetRequest(url: url, type: CourseFolderDetails.self) { response in
-     //            guard let data = response.data else {
-     //                print(response.error ?? "Unknown error")
-     //                completion([])
-     //                return;
-     //            }
-     //            completion(data.Resources.EntityArray)
-     //        }
-     }*/
+    static func getDownloadURL(_ authHandler: AuthHandler, resourceId: ItemID, completion: @escaping ((url: String?, error: Error?)) -> ()) {
+        //let urlSSO = "https://sdu.itslearning.com/LearningToolElement/ViewLearningToolElement.aspx?LearningToolElementId=\(resourceId.baseItem)"
+        let urlSSO = "https://sdu.itslearning.com/LearningToolElement/ViewLearningToolElement.aspx?LearningToolElementId=352598"
+        print(urlSSO)
+        
+        authHandler.GetRequestSSO(url: urlSSO) { response in
+            guard let data = response.data else {
+                completion((nil, response.error))
+                return
+            }
+            
+            do {
+                let doc: Document = try SwiftSoup.parse(data)
+                
+                let iframeSelector = "#ctl00_ContentPlaceHolder_ExtensionIframe"
+                
+                guard let iframeURL = try doc.select(iframeSelector).first()?.attr("src") else {
+                    completion((nil, NSError(domain: "", code: 0, userInfo: [ NSLocalizedDescriptionKey: "Could not find iframe"])))
+                    return
+                }
+                
+                print(iframeURL)
+                AF.request(iframeURL).response { response in
+                    guard let redirectURL = response.response?.url else {
+                        completion((nil, NSError(domain: "", code: 0, userInfo: [ NSLocalizedDescriptionKey: "Could not find redirected url"])))
+                        return
+                    }
+                    
+                    guard let queryItems = URLComponents(url: redirectURL, resolvingAgainstBaseURL: true)?.queryItems else {
+                        completion((nil, NSError(domain: "", code: 0, userInfo: [ NSLocalizedDescriptionKey: "Failed to parse url"])))
+                        return
+                    }
+                    
+                    guard let learningObjectId = queryItems.filter({$0.name == "LearningObjectId"}).first?.value else {
+                        completion((nil, NSError(domain: "", code: 0, userInfo: [ NSLocalizedDescriptionKey: "Failed to get learningObjectId from url"])))
+                        return
+                    }
+                    guard let learningObjectInstanceId = queryItems.filter({$0.name == "LearningObjectInstanceId"}).first?.value else {
+                        completion((nil, NSError(domain: "", code: 0, userInfo: [ NSLocalizedDescriptionKey: "Failed to get learningObjectInstanceId from url"])))
+                        return
+                    }
+
+                    let downloadLink = "https://resource.itslearning.com/Proxy/DownloadRedirect.ashx?LearningObjectId=\(learningObjectId)&LearningObjectInstanceId=\(learningObjectInstanceId)"
+                    
+                    // TODO: Make this use AF.download
+                    AF.request(downloadLink).response { response in
+                        // This works and downloads the file
+                        print(response.response)
+                    }
+                    print(downloadLink)
+                    
+                }
+
+                
+            } catch {
+                completion((nil, CommonError.internalError))
+            }
+            
+        }
+    }
 }

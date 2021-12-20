@@ -40,6 +40,8 @@
 		DAA76B94272608DA008DEE7E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = DAA76B93272608DA008DEE7E /* SwiftSoup */; };
 		DAAB787927488CD600E7997C /* ItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB787727488CCE00E7997C /* ItemID.swift */; };
 		DAAB787A27488CD600E7997C /* ItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB787727488CCE00E7997C /* ItemID.swift */; };
+		DAAB787D274A889B00E7997C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB787B274A888B00E7997C /* Errors.swift */; };
+		DAAB787E274A889B00E7997C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB787B274A888B00E7997C /* Errors.swift */; };
 		DABBCF6B2707B16C005E9DDA /* ElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A9B9926FFAA3700B25514 /* ElementType.swift */; };
 		DABBCF6D2707B16C005E9DDA /* CourseFolderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABBCF672707AEC1005E9DDA /* CourseFolderDetails.swift */; };
 		DABBCF6E2707B16C005E9DDA /* PersonCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A9B9526FFA84F00B25514 /* PersonCourse.swift */; };
@@ -158,6 +160,7 @@
 		DA7D154C271F7C6D00947AB5 /* FullScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenModel.swift; sourceTree = "<group>"; };
 		DA7D154E271F875000947AB5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		DAAB787727488CCE00E7997C /* ItemID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemID.swift; sourceTree = "<group>"; };
+		DAAB787B274A888B00E7997C /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		DABBCF652707ADE2005E9DDA /* EntityListOfPersonCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityListOfPersonCourse.swift; sourceTree = "<group>"; };
 		DABBCF672707AEC1005E9DDA /* CourseFolderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseFolderDetails.swift; sourceTree = "<group>"; };
 		DAC6507526EF8E160029E2B1 /* OAuth2RetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2RetryHandler.swift; sourceTree = "<group>"; };
@@ -286,6 +289,7 @@
 				DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */,
 				DA6B03DB26EBF91D00B46E1D /* ItslearningAPI.h */,
 				DA6B03DC26EBF91D00B46E1D /* Info.plist */,
+				DAAB787B274A888B00E7997C /* Errors.swift */,
 			);
 			path = ItslearningAPI;
 			sourceTree = "<group>";
@@ -503,6 +507,7 @@
 				DAF1B8C026F29333007BCDE2 /* Home.swift in Sources */,
 				DABBCF6F2707B16C005E9DDA /* CourseResource.swift in Sources */,
 				DABBCF6D2707B16C005E9DDA /* CourseFolderDetails.swift in Sources */,
+				DAAB787E274A889B00E7997C /* Errors.swift in Sources */,
 				DAF38E592728BD8E00192923 /* AppDelegate.swift in Sources */,
 				DAAB787927488CD600E7997C /* ItemID.swift in Sources */,
 				DABBCF702707B16C005E9DDA /* EntityListOfPersonCourse.swift in Sources */,
@@ -521,6 +526,7 @@
 				D06C9C4225F7B01300354820 /* FileProviderExtension.swift in Sources */,
 				DA0266AE2715A2FF004DF9DB /* SSOResponse.swift in Sources */,
 				DA75743D270DC01A002CADAF /* FileProviderResourceItem.swift in Sources */,
+				DAAB787D274A889B00E7997C /* Errors.swift in Sources */,
 				DA6B03F326EC133000B46E1D /* Defaults.swift in Sources */,
 				DABBCF752707B804005E9DDA /* CourseResource.swift in Sources */,
 				DABBCF732707B804005E9DDA /* EntityListOfPersonCourse.swift in Sources */,

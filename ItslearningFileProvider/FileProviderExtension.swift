@@ -23,8 +23,15 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
         self.domain = domain
         self.manager = NSFileProviderManager(for: domain)!
         self.authHandler = AuthHandler()
-        super.init()
+
+   /*     do {
+            temporaryDirectoryURL = try manager.temporaryDirectoryURL()
+        } catch {
+            fatalError("failed to get temporary directory: \(error)")
+        }*/
         
+        super.init()
+                
         // HACK: The fileprovider responds better to updates with this
         Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(self.pingFinder), userInfo: nil, repeats: true)
     }
@@ -86,8 +93,54 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
     // TODO: implement fetching of the contents for the itemIdentifier at the specified version
     func fetchContents(for itemIdentifier: NSFileProviderItemIdentifier, version requestedVersion: NSFileProviderItemVersion?, request: NSFileProviderRequest, completionHandler: @escaping (URL?, NSFileProviderItem?, Error?) -> Void) -> Progress {
         self.logger.debug("Fetch contents: \(String(describing: itemIdentifier.rawValue), privacy: .public)")
-        completionHandler(nil, nil, NSError(domain: NSCocoaErrorDomain, code: NSFeatureUnsupportedError, userInfo:[:]))
-        return Progress()
+        self.logger.log("Version: \(String(describing: requestedVersion), privacy: .public)")
+        
+        self.item(for: itemIdentifier, request: request) { itemOpt, errorOpt in
+            if let error = errorOpt as NSError? {
+                self.logger.error("Error calling item for identifier \"\(String(describing: itemIdentifier))\": \(error)")
+                completionHandler(nil, nil, error)
+                return
+            }
+
+            guard let item = itemOpt else {
+                self.logger.error("Could not find item metadata, identifier: \(String(describing: itemIdentifier))")
+                completionHandler(nil, nil, CommonError.internalError)
+                return
+            }
+
+            guard let itemCasted = item as? FileProviderResourceItem else {
+                self.logger.error("Could not cast item to FileProviderResourceItem class, identifier: \(String(describing: itemIdentifier))")
+                completionHandler(nil, nil, CommonError.internalError)
+                return
+            }
+            
+            if let requestedVersion = requestedVersion {
+                guard requestedVersion == item.itemVersion else {
+                    self.logger.error("requestedVersion (\(String(describing: requestedVersion))) != item.itemVersion (\(String(describing: item.itemVersion)))")
+                    completionHandler(nil, nil, CommonError.internalError)
+                    return
+                }
+            }
+            
+            do {
+                let url = try self.manager.temporaryDirectoryURL().appendingPathComponent("\("yeet123")-\(UUID().uuidString)")
+
+                self.logger.log("Writing file: \(String(describing: url), privacy: .public)")
+                
+                try "Hello".write(to: url, atomically: false, encoding: .utf8)
+                self.logger.log("Wrote file: \(String(describing: url), privacy: .public)")
+                completionHandler(url, item, nil)
+
+            } catch {
+                self.logger.log("Failed to write file")
+            }
+            self.logger.log("Item: \(String(describing: itemCasted.item), privacy: .public)")
+        }
+        /*
+     progress.addChild(itemProgress, withPendingUnitCount: 5)
+        progress.cancellationHandler = { completionHandler(nil, nil, NSError(domain: NSCocoaErrorDomain, code: NSUserCancelledError)) }*/
+        
+        return Progress(totalUnitCount: 1)
     }
     
     // TODO: a new item was created on disk, process the item's creation
@@ -118,4 +171,14 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
         
         return FileProviderEnumerator(enumeratedItemIdentifier: containerItemIdentifier, fpExtension: self)
     }
+    
+ /*   let temporaryDirectoryURL: URL
+    
+    func makeTemporaryURL(_ purpose: String, _ ext: String? = nil) -> URL {
+        if let ext = ext {
+            return temporaryDirectoryURL.appendingPathComponent("\(purpose)-\(UUID().uuidString).\(ext)")
+        } else {
+            return temporaryDirectoryURL.appendingPathComponent("\(purpose)-\(UUID().uuidString)")
+        }
+    }*/
 }

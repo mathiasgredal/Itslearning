@@ -26,10 +26,12 @@ extension AuthHandler {
     func GetRequestSSO(url: String, completion: @escaping ((data: String?, error: AFError?))->()) {
         GetRequest(url: "https://sdu.itslearning.com/restapi/personal/sso/url/v1?url=\(url)", type: SSOResponse.self) { response in
             guard let data = response.data else {
+                print("FAIL")
                 completion((nil, response.error))
                 return
             }
-            
+            print("YEEET")
+            print(data.Url)
             self.GetRequest(url: data.Url) { response in
                 guard let data = response.data else {
                     completion((nil, response.error))
@@ -43,6 +45,8 @@ extension AuthHandler {
     /// Makes a get request, deserialize it and returns the response with the provided type
     func GetRequest<T: Decodable>(url: String, type: T.Type = T.self, completion: @escaping ((data: T?, error: AFError?))->()) {
         AF.request(url, interceptor: OAuth2RetryHandler(authHandler: self), requestModifier: { $0.timeoutInterval = 5 }).validate().responseDecodable(of: type.self) { response in
+           // print(response.response?.headers)
+            
             switch response.result {
             case .success(let data):
                 completion((data, nil))
