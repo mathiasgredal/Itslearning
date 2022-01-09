@@ -94,6 +94,8 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
     func fetchContents(for itemIdentifier: NSFileProviderItemIdentifier, version requestedVersion: NSFileProviderItemVersion?, request: NSFileProviderRequest, completionHandler: @escaping (URL?, NSFileProviderItem?, Error?) -> Void) -> Progress {
         self.logger.debug("Fetch contents: \(String(describing: itemIdentifier.rawValue), privacy: .public)")
         self.logger.log("Version: \(String(describing: requestedVersion), privacy: .public)")
+        let progress = Progress(totalUnitCount: 100);
+        
         
         self.item(for: itemIdentifier, request: request) { itemOpt, errorOpt in
             if let error = errorOpt as NSError? {
@@ -127,12 +129,15 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
 
                 self.logger.log("Writing file: \(String(describing: url), privacy: .public)")
                 
-                try "Hello".write(to: url, atomically: false, encoding: .utf8)
-                self.logger.log("Wrote file: \(String(describing: url), privacy: .public)")
-                completionHandler(url, item, nil)
-
+                let downloadProgress = ItslearningAPI.DownloadFile(self.authHandler, resourceId: try ItemID(idString: itemIdentifier.rawValue), file: url) { response in
+                    self.logger.log("Wrote file: \(String(describing: url), privacy: .public)")
+                    completionHandler(url, item, nil)
+                }
+                
+                progress.addChild(downloadProgress, withPendingUnitCount: 100)
+                
             } catch {
-                self.logger.log("Failed to write file")
+                self.logger.log("Failed")
             }
             self.logger.log("Item: \(String(describing: itemCasted.item), privacy: .public)")
         }

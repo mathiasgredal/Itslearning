@@ -38,13 +38,16 @@ struct Home: View {
             })
             Button( action: {
                 
-                do {
-                    ItslearningAPI.getDownloadURL(authHandler, resourceId: try ItemID(idString: "12507_331920_455844_455860")) { response in
+               // do {
+                    /*ItslearningAPI.getDownloadURL(authHandler, resourceId: try ItemID(idString: "12507_331920_455844_455860")) { response in
+                        print(response)
+                    }*/
+   /*                 ItslearningAPI.DownloadFile(authHandler, resourceId:  try ItemID(idString: "12507_331920_455844_455860"), fileName: "/tmp/yeet.txt") { response in
                         print(response)
                     }
                 } catch {
                     print("Error2")
-                }
+                }*/
                 
                 
                 /*do {

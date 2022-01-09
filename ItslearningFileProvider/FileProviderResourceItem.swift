@@ -50,6 +50,7 @@ class FileProviderResourceItem: NSObject, NSFileProviderItem {
     
     var filename: String {
         return item.Title
+
     }
     
     var contentType: UTType {

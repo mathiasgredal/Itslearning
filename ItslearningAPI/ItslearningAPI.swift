@@ -87,16 +87,17 @@ public enum ItslearningAPI {
         }
     }
     
-    static func getDownloadURL(_ authHandler: AuthHandler, resourceId: ItemID, completion: @escaping ((url: String?, error: Error?)) -> ()) {
-        //let urlSSO = "https://sdu.itslearning.com/LearningToolElement/ViewLearningToolElement.aspx?LearningToolElementId=\(resourceId.baseItem)"
-        let urlSSO = "https://sdu.itslearning.com/LearningToolElement/ViewLearningToolElement.aspx?LearningToolElementId=352598"
-        print(urlSSO)
+    static func DownloadFile(_ authHandler: AuthHandler, resourceId: ItemID, file: URL, completion: @escaping ((url: String?, error: Error?)) -> ()) -> Progress {
+        let urlSSO = "https://sdu.itslearning.com/LearningToolElement/ViewLearningToolElement.aspx?LearningToolElementId=\(resourceId.baseItem)"
+        let downloadProgress = Progress(totalUnitCount: 100);
         
         authHandler.GetRequestSSO(url: urlSSO) { response in
             guard let data = response.data else {
                 completion((nil, response.error))
                 return
             }
+            
+            downloadProgress.completedUnitCount += 10;
             
             do {
                 let doc: Document = try SwiftSoup.parse(data)
@@ -108,7 +109,6 @@ public enum ItslearningAPI {
                     return
                 }
                 
-                print(iframeURL)
                 AF.request(iframeURL).response { response in
                     guard let redirectURL = response.response?.url else {
                         completion((nil, NSError(domain: "", code: 0, userInfo: [ NSLocalizedDescriptionKey: "Could not find redirected url"])))
@@ -131,12 +131,26 @@ public enum ItslearningAPI {
 
                     let downloadLink = "https://resource.itslearning.com/Proxy/DownloadRedirect.ashx?LearningObjectId=\(learningObjectId)&LearningObjectInstanceId=\(learningObjectInstanceId)"
                     
+                    downloadProgress.completedUnitCount += 10;
+
+                    
+                   let destination: DownloadRequest.Destination = { _, _ in
+                        return (file, [.removePreviousFile, .createIntermediateDirectories])
+                    }
+                    
+                    let downloadRequest = AF.download(downloadLink, to: destination);
+                    
+                    downloadProgress.addChild(downloadRequest.downloadProgress, withPendingUnitCount: 80);
+                    downloadRequest.response { response in
+                        completion(("Success", nil))
+                    }
+/*
                     // TODO: Make this use AF.download
                     AF.request(downloadLink).response { response in
                         // This works and downloads the file
                         print(response.response)
                     }
-                    print(downloadLink)
+                    */
                     
                 }
 
@@ -146,5 +160,6 @@ public enum ItslearningAPI {
             }
             
         }
+        return downloadProgress;
     }
 }

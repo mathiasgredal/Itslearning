@@ -417,7 +417,7 @@
 		D06C9C2025F7AFD200354820 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					D06C9C2725F7AFD200354820 = {
@@ -715,8 +715,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				PRODUCT_BUNDLE_IDENTIFIER = sdu.magre21.itslearning;
+				PRODUCT_BUNDLE_IDENTIFIER = sdu.magre21.itslearningapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -739,8 +740,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				PRODUCT_BUNDLE_IDENTIFIER = sdu.magre21.itslearning;
+				PRODUCT_BUNDLE_IDENTIFIER = sdu.magre21.itslearningapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -761,7 +763,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				PRODUCT_BUNDLE_IDENTIFIER = sdu.magre21.itslearning.itslearningfileprovider;
+				PRODUCT_BUNDLE_IDENTIFIER = sdu.magre21.itslearningapp.itslearningfp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -785,7 +787,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				PRODUCT_BUNDLE_IDENTIFIER = sdu.magre21.itslearning.itslearningfileprovider;
+				PRODUCT_BUNDLE_IDENTIFIER = sdu.magre21.itslearningapp.itslearningfp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -812,7 +814,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				PRODUCT_BUNDLE_IDENTIFIER = sdu.magre21.itslearning.ItslearningAPI;
+				PRODUCT_BUNDLE_IDENTIFIER = sdu.magre21.itslearningapp.itslearningapi;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -842,7 +844,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				PRODUCT_BUNDLE_IDENTIFIER = sdu.magre21.itslearning.ItslearningAPI;
+				PRODUCT_BUNDLE_IDENTIFIER = sdu.magre21.itslearningapp.itslearningapi;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
