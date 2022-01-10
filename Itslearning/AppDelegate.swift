@@ -1,9 +1,8 @@
+//  SPDX-License-Identifier: CC-BY-NC-SA-4.0
+//  Copyright (C) 2022 Mathias Gredal
 //
 //  AppDelegate.swift
 //  Itslearning
-//
-//  Created by Mathias Gredal on 15/09/2021.
-//
 
 import Cocoa
 import SwiftUI
@@ -13,7 +12,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var window: NSWindow!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        print(Bundle.main.infoDictionary)
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView()
 

@@ -1,9 +1,8 @@
+//  SPDX-License-Identifier: CC-BY-NC-SA-4.0
+//  Copyright (C) 2022 Mathias Gredal
 //
 //  Controls.swift
 //  Itslearning
-//
-//  Created by Mathias Gredal on 15/09/2021.
-//
 
 import SwiftUI
 

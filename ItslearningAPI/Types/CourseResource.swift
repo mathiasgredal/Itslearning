@@ -1,9 +1,8 @@
+//  SPDX-License-Identifier: CC-BY-NC-SA-4.0
+//  Copyright (C) 2022 Mathias Gredal
 //
-//  Resource.swift
+//  CourseResource.swift
 //  ItslearningAPI
-//
-//  Created by Mathias Gredal on 25/09/2021.
-//
 
 import Foundation
 import SwiftUI

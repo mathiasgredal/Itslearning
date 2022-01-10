@@ -1,9 +1,10 @@
+//  SPDX-License-Identifier: CC-BY-NC-SA-4.0
+//  Copyright (C) 2022 Mathias Gredal
 //
 //  FileProviderEnumerator.swift
 //  Itslearning
 //
-//  Copied from: https://github.com/p2/OAuth2/wiki/Alamofire-5
-//
+//  Based on: https://github.com/p2/OAuth2/wiki/Alamofire-5
 
 import Foundation
 import OAuth2

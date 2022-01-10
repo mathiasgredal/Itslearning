@@ -1,9 +1,8 @@
+//  SPDX-License-Identifier: CC-BY-NC-SA-4.0
+//  Copyright (C) 2022 Mathias Gredal
 //
 //  AuthHandler+REST.swift
 //  Itslearning
-//
-//  Created by Mathias Gredal on 12/10/2021.
-//
 
 import Foundation
 import Alamofire

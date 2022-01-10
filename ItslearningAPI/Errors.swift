@@ -1,9 +1,8 @@
+//  SPDX-License-Identifier: CC-BY-NC-SA-4.0
+//  Copyright (C) 2022 Mathias Gredal
 //
 //  Errors.swift
 //  ItslearningAPI
-//
-//  Created by Mathias Gredal on 21/11/2021.
-//
 
 import Foundation
 
