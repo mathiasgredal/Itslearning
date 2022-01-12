@@ -17,6 +17,7 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
     
     required public init(domain: NSFileProviderDomain) {
         Logging.Log(message: "Initializing File Provider", source: .FileProvider)
+        NetworkLogger.shared.startLogging()
         self.domain = domain
         self.manager = NSFileProviderManager(for: domain)!
         self.authHandler = AuthHandler()

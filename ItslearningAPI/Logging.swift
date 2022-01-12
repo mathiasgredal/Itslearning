@@ -15,6 +15,7 @@ public struct Logging {
         case FileProvider
         case AuthHandler
         case MainApp
+        case Network
     }
  
     static func Log(message: String, source: LogSources) {

@@ -20,6 +20,8 @@
 		DA3674D7270B00FC003F39E6 /* ItslearningAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */; };
 		DA47B04E278E678900C720D3 /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47B04D278E678900C720D3 /* Console.swift */; };
 		DA47B050278E67CF00C720D3 /* LoggerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47B04F278E67CF00C720D3 /* LoggerModel.swift */; };
+		DA47B055278F137D00C720D3 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47B054278F137D00C720D3 /* NetworkLogger.swift */; };
+		DA47B056278F137D00C720D3 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47B054278F137D00C720D3 /* NetworkLogger.swift */; };
 		DA5455D4271F9BBA00A40CE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D06C9C2F25F7AFD400354820 /* Assets.xcassets */; };
 		DA5455D7271F9BFE00A40CE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D06C9C3125F7AFD400354820 /* Main.storyboard */; };
 		DA6B03BE26E957C400B46E1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03BD26E957C400B46E1D /* ContentView.swift */; };
@@ -149,6 +151,7 @@
 		DA0266B72715F3B2004DF9DB /* Fileprovider.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Fileprovider.xcassets; sourceTree = "<group>"; };
 		DA47B04D278E678900C720D3 /* Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
 		DA47B04F278E67CF00C720D3 /* LoggerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerModel.swift; sourceTree = "<group>"; };
+		DA47B054278F137D00C720D3 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		DA5A9B9526FFA84F00B25514 /* PersonCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCourse.swift; sourceTree = "<group>"; };
 		DA5A9B9726FFA9B000B25514 /* CourseResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseResource.swift; sourceTree = "<group>"; };
 		DA5A9B9926FFAA3700B25514 /* ElementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementType.swift; sourceTree = "<group>"; };
@@ -298,6 +301,7 @@
 				DA6B03DC26EBF91D00B46E1D /* Info.plist */,
 				DAAB787B274A888B00E7997C /* Errors.swift */,
 				DAF98B94278E50520071DA53 /* Logging.swift */,
+				DA47B054278F137D00C720D3 /* NetworkLogger.swift */,
 			);
 			path = ItslearningAPI;
 			sourceTree = "<group>";
@@ -514,6 +518,7 @@
 				DABBCF6B2707B16C005E9DDA /* ElementType.swift in Sources */,
 				DA47B050278E67CF00C720D3 /* LoggerModel.swift in Sources */,
 				DABBCF6E2707B16C005E9DDA /* PersonCourse.swift in Sources */,
+				DA47B055278F137D00C720D3 /* NetworkLogger.swift in Sources */,
 				DAF1B8C426F293CE007BCDE2 /* Settings.swift in Sources */,
 				DA7D1548271F7BCA00947AB5 /* Main.swift in Sources */,
 				DA6B03BE26E957C400B46E1D /* ContentView.swift in Sources */,
@@ -532,6 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA47B056278F137D00C720D3 /* NetworkLogger.swift in Sources */,
 				DABBCF712707B804005E9DDA /* ElementType.swift in Sources */,
 				DA3674D7270B00FC003F39E6 /* ItslearningAPI.swift in Sources */,
 				DABBCF762707B804005E9DDA /* PersonCourse.swift in Sources */,
