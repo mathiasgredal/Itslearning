@@ -36,10 +36,7 @@ struct Home: View {
                 Text("Reload")
             })
             Button( action: {
-                //let url = URL(string:"hello")!
-                //NSWorkspace.shared.open([url], withAppBundleIdentifier: "com.apple.Console", options: [], additionalEventParamDescriptor: nil, launchIdentifiers: nil)
-                print(Logging.logfile)
-                Logging.Log(message: "Hello", source: .MainApp)
+
             }, label: {
                 Text("Test API")
             })

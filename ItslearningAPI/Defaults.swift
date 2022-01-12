@@ -43,9 +43,13 @@ extension Data {
 }
 
 extension Date {
-    static func getCurrentDate() -> String {
+    func getFormattedDate() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return dateFormatter.string(from: Date())
+        return dateFormatter.string(from: self)
+    }
+    
+    static func getCurrentDate() -> String {
+        return Date().getFormattedDate()
     }
 }
