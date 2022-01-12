@@ -48,8 +48,7 @@ class FileProviderResourceItem: NSObject, NSFileProviderItem {
     }
     
     var filename: String {
-        return item.Title
-
+        return item.Title + (ItslearningAPI.IsWebpage(resource: item) ? ".url" : "")
     }
     
     var contentType: UTType {

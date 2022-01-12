@@ -143,22 +143,117 @@ public enum ItslearningAPI {
                     downloadRequest.response { response in
                         completion(("Success", nil))
                     }
-/*
-                    // TODO: Make this use AF.download
-                    AF.request(downloadLink).response { response in
-                        // This works and downloads the file
-                        print(response.response)
-                    }
-                    */
-                    
                 }
-
-                
             } catch {
                 completion((nil, CommonError.internalError))
             }
-            
         }
         return downloadProgress;
+    }
+    
+    static func GetNestedLink(authHandler: AuthHandler, resource: CourseResource, completion: @escaping ((data: String?, error: AFError?))->()) {
+        if(!IsNestedLink(resource: resource)) {
+            completion((nil, "Not nested link".asAFError))
+        }
+        
+        authHandler.GetRequestSSO(url: resource.ContentUrl) { response in
+            guard let data = response.data else {
+                completion((nil, response.error))
+                return
+            }
+            
+            // TODO: Some duplicated code
+            do {
+                let doc: Document = try SwiftSoup.parse(data)
+                
+                let iframeSelector = "#ctl00_ContentPlaceHolder_ExtensionIframe"
+                
+                guard let iframeURL = try doc.select(iframeSelector).first()?.attr("src") else {
+                    completion((nil, "Could not find iframe".asAFError))
+                    return
+                }
+                
+                AF.request(iframeURL).responseString { response in
+                    switch response.result {
+                    case .success(let data):
+                        do {
+                            let doc: Document = try SwiftSoup.parse(data)
+                            let linkSelector = "#ctl00_ctl00_MainFormContent_ResourceContent_Link"
+                            guard let link = try doc.select(linkSelector).first()?.attr("href") else {
+                                completion((nil, "Could not find link".asAFError))
+                                return
+                            }
+                            completion((link, nil))
+                        } catch {
+                            completion((nil, "Could not parse link response".asAFError))
+                        }
+                        break
+                    case .failure(let error):
+                        completion((nil, error))
+                        break
+                    }
+                }
+            } catch {
+                completion((nil, "Could not parse iframe response".asAFError))
+            }
+        }
+    }
+    
+    static func IsNestedLink(resource: CourseResource) -> Bool {
+        // We can look at the icon url to determine if a resource is a webpage
+        let queryItems = URLComponents(string: resource.IconUrl)?.queryItems
+        let extensionId = queryItems?.filter({$0.name == "ExtensionId"}).first
+        
+        return extensionId?.value == "5010" && resource.ElementType == .LearningToolElement
+    }
+
+    
+    static func IsWebpage(resource: CourseResource) -> Bool {
+        // If it is a nested link, then it is also a link
+        if(IsNestedLink(resource: resource)) {
+            return true
+        }
+        
+        // We can look at the icon url to determine if a resource is a webpage
+        let queryItems = URLComponents(string: resource.IconUrl)?.queryItems
+        let extensionId = queryItems?.filter({$0.name == "ExtensionId"}).first
+        
+        if(extensionId?.value == "5" && resource.ElementType == .LearningToolElement) {
+            return true
+        }
+        
+        // To detect whether an item is a webpage we can also look at the element type
+        switch(resource.ElementType) {
+        case .LearningPath:
+            return true
+        case .Unknown:
+            return false
+        case .Discussion:
+            return true
+        case .PictureWithDescription:
+            return false
+        case .Folder:
+            return false
+        case .Note:
+            return true
+        case .WebLink:
+            return true
+        case .FolderFile:
+            return false
+        case .Survey:
+            return true
+        case .Assignment:
+            return true
+        case .Lesson:
+            return true
+        case .Conference:
+            return true
+        case .Test:
+            return true
+        case .LearningToolElement:
+            return false
+        case .CustomActivity:
+            return true
+        }
     }
 }

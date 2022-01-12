@@ -101,15 +101,38 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
             
             do {
                 let url = try self.manager.temporaryDirectoryURL().appendingPathComponent("\("itslearning")-\(UUID().uuidString)")
-                Logging.Log(message: "Downloading \"\(itemCasted.filename)\" to \(url.path)", source: .FileProvider)
                 
-                let downloadProgress = ItslearningAPI.DownloadFile(self.authHandler, resourceId: try ItemID(idString: itemIdentifier.rawValue), file: url) { response in
-                    Logging.Log(message: "Finished downloading \"\(itemCasted.filename)\"", source: .FileProvider)
-                    completionHandler(url, item, nil)
+                // Some Itslearning file types are not actually files but just links
+                // For these we should create a url, that opens in the webbrowser
+                if(ItslearningAPI.IsWebpage(resource: itemCasted.item)) {
+                    // Make url
+                    if(ItslearningAPI.IsNestedLink(resource: itemCasted.item)) {
+                        ItslearningAPI.GetNestedLink(authHandler: self.authHandler, resource: itemCasted.item) { response in
+                            guard let data = response.data else {
+                                Logging.Log(message: "Failed to get nested url", source: .FileProvider)
+                                return
+                            }
+                            do {
+                                try "[InternetShortcut]\nURL=\(data)".write(to: url, atomically: true, encoding: .utf8)
+                                completionHandler(url, item, nil) }
+                            catch {
+                                Logging.Log(message: "Could not write nested url", source: .FileProvider)
+                            }
+                        }
+                    } else {
+                        try "[InternetShortcut]\nURL=\(itemCasted.item.Url)".write(to: url, atomically: true, encoding: .utf8)
+                        completionHandler(url, item, nil)
+                    }
+                } else {
+                    Logging.Log(message: "Downloading \"\(itemCasted.filename)\" to \(url.path)", source: .FileProvider)
+                    
+                    let downloadProgress = ItslearningAPI.DownloadFile(self.authHandler, resourceId: try ItemID(idString: itemIdentifier.rawValue), file: url) { response in
+                        Logging.Log(message: "Finished downloading \"\(itemCasted.filename)\"", source: .FileProvider)
+                        completionHandler(url, item, nil)
+                    }
+                    
+                    progress.addChild(downloadProgress, withPendingUnitCount: 100)
                 }
-                
-                progress.addChild(downloadProgress, withPendingUnitCount: 100)
-                
             } catch {
                 Logging.Log(message: "Failed downloading \"\(itemCasted.filename)\"", source: .FileProvider)
             }
