@@ -35,6 +35,18 @@ public struct Logging {
     }
     
     static func Clear() {
-        // TODO: Implement this
+        guard let logfile = Logging.logfile else {
+            // An invalid app group id was presumably passed
+            print("Error: Could not find location for log(check app group id)")
+            return
+        }
+        
+        // To clear the file we just write an empty string to it
+        do {
+            try "".write(toFile: logfile.path, atomically: true, encoding: .utf8)
+            Log(message: "Cleared log", source: .MainApp)
+        } catch {
+            print("Error: Could not clear log")
+        }
     }
 }

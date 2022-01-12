@@ -17,10 +17,11 @@ struct Console: View {
             }.padding(5).background(Color(NSColor.alternatingContentBackgroundColors[1])).cornerRadius(5)
             HStack {
                 Button("Clear Log") {
-                    Logging.Log(message: "Clear log not implemented", source: .MainApp)
+                    Logging.Clear()
                 }
                 Button("Open in Finder") {
-                    Logging.Log(message: "Open in finder not implemented", source: .MainApp)
+                    guard let logfile = Logging.logfile else { return }
+                    NSWorkspace.shared.activateFileViewerSelecting([logfile])
                 }
             }.frame(alignment: .leading)
         }.padding()

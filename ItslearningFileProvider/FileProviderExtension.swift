@@ -142,6 +142,7 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
             throw FileProviderError.loading
         } else if(!authHandler.isLoggedIn) {
             throw NSFileProviderError(.notAuthenticated)
+            // throw FileProviderError.notSignedIn
         }
         
         return FileProviderEnumerator(enumeratedItemIdentifier: containerItemIdentifier, fpExtension: self)
