@@ -7,6 +7,7 @@
 import Foundation
 import OAuth2
 import Alamofire
+import FileProvider
 
 /// The main class for doing SSO Authenticated communication with Itslearning
 class AuthHandler: ObservableObject {

@@ -5,53 +5,32 @@
 //  Itslearning
 
 import FileProvider
-import os.log
 import OAuth2
 import Foundation
 import Alamofire
 
 
 class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
-    public let logger = Logger(subsystem: "sdu.magre21.itslearning.itslearningfileprovider", category: "extension")
     public let domain: NSFileProviderDomain
     public var manager: NSFileProviderManager
     public var authHandler: AuthHandler
     
     required public init(domain: NSFileProviderDomain) {
-        self.logger.debug("Initializing file provider extension")
+        Logging.Log(message: "Initializing File Provider", source: .FileProvider)
         self.domain = domain
         self.manager = NSFileProviderManager(for: domain)!
         self.authHandler = AuthHandler()
-
-   /*     do {
-            temporaryDirectoryURL = try manager.temporaryDirectoryURL()
-        } catch {
-            fatalError("failed to get temporary directory: \(error)")
-        }*/
-        
         super.init()
-                
-        // HACK: The fileprovider responds better to updates with this
-        Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(self.pingFinder), userInfo: nil, repeats: true)
-    }
-    
-    @objc func pingFinder() {
-        manager.signalEnumerator(for: .workingSet) { error in
-            guard error == nil else {
-                self.logger.debug("Error: \(String(describing: error), privacy: .public)")
-                return
-            }
-        }
     }
     
     // TODO: cleanup any resources
     func invalidate() {
-        
     }
     
     // Resolve item from identifier
     func item(for identifier: NSFileProviderItemIdentifier, request: NSFileProviderRequest, completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) -> Progress {
-        self.logger.debug("Resolving item from identifier: \(String(describing: identifier.rawValue), privacy: .public)")
+        Logging.Log(message: "Resolving item from identifier: \(identifier.rawValue)", source: .FileProvider)
+        
         // Handle som built-in identifiers
         if(identifier == .rootContainer || identifier == .trashContainer || identifier == .workingSet) {
             completionHandler(FileProviderItem(identifier: identifier), nil)
@@ -60,7 +39,6 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
         
         do {
             let itemId = try ItemID(idString: identifier.rawValue)
-            
             switch itemId.itemType {
             case .Course:
                 ItslearningAPI.GetCourse(authHandler, itemID: itemId) { response in
@@ -78,7 +56,6 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
                         return
                     }
                     completionHandler(FileProviderResourceItem(item: data), nil)
-                    
                 }
                 break
             }
@@ -91,60 +68,53 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
     
     // TODO: implement fetching of the contents for the itemIdentifier at the specified version
     func fetchContents(for itemIdentifier: NSFileProviderItemIdentifier, version requestedVersion: NSFileProviderItemVersion?, request: NSFileProviderRequest, completionHandler: @escaping (URL?, NSFileProviderItem?, Error?) -> Void) -> Progress {
-        self.logger.debug("Fetch contents: \(String(describing: itemIdentifier.rawValue), privacy: .public)")
-        self.logger.log("Version: \(String(describing: requestedVersion), privacy: .public)")
+        Logging.Log(message: "Fetch contents: \(itemIdentifier.rawValue), version: \(requestedVersion.debugDescription)", source: .FileProvider)
         let progress = Progress(totalUnitCount: 100);
-        
         
         self.item(for: itemIdentifier, request: request) { itemOpt, errorOpt in
             if let error = errorOpt as NSError? {
-                self.logger.error("Error calling item for identifier \"\(String(describing: itemIdentifier))\": \(error)")
+                Logging.Log(message: "Error calling item for identifier \"\(itemIdentifier)\": \(error)", source: .FileProvider)
                 completionHandler(nil, nil, error)
                 return
             }
-
+            
             guard let item = itemOpt else {
-                self.logger.error("Could not find item metadata, identifier: \(String(describing: itemIdentifier))")
+                Logging.Log(message: "Could not find item metadata, identifier: \(itemIdentifier)", source: .FileProvider)
                 completionHandler(nil, nil, CommonError.internalError)
                 return
             }
-
+            
             guard let itemCasted = item as? FileProviderResourceItem else {
-                self.logger.error("Could not cast item to FileProviderResourceItem class, identifier: \(String(describing: itemIdentifier))")
+                Logging.Log(message: "Could not cast item to FileProviderResourceItem class, identifier: \(itemIdentifier)", source: .FileProvider)
                 completionHandler(nil, nil, CommonError.internalError)
                 return
             }
             
             if let requestedVersion = requestedVersion {
                 guard requestedVersion == item.itemVersion else {
-                    self.logger.error("requestedVersion (\(String(describing: requestedVersion))) != item.itemVersion (\(String(describing: item.itemVersion)))")
+                    Logging.Log(message: "requestedVersion (\(requestedVersion) != item.itemVersion (\(item.itemVersion?.description ?? "nil")", source: .FileProvider)
                     completionHandler(nil, nil, CommonError.internalError)
                     return
                 }
             }
             
             do {
-                let url = try self.manager.temporaryDirectoryURL().appendingPathComponent("\("yeet123")-\(UUID().uuidString)")
-
-                self.logger.log("Writing file: \(String(describing: url), privacy: .public)")
+                let url = try self.manager.temporaryDirectoryURL().appendingPathComponent("\("itslearning")-\(UUID().uuidString)")
+                Logging.Log(message: "Downloading \"\(itemCasted.filename)\" to \(url.path)", source: .FileProvider)
                 
                 let downloadProgress = ItslearningAPI.DownloadFile(self.authHandler, resourceId: try ItemID(idString: itemIdentifier.rawValue), file: url) { response in
-                    self.logger.log("Wrote file: \(String(describing: url), privacy: .public)")
+                    Logging.Log(message: "Finished downloading \"\(itemCasted.filename)\"", source: .FileProvider)
                     completionHandler(url, item, nil)
                 }
                 
                 progress.addChild(downloadProgress, withPendingUnitCount: 100)
                 
             } catch {
-                self.logger.log("Failed")
+                Logging.Log(message: "Failed downloading \"\(itemCasted.filename)\"", source: .FileProvider)
             }
-            self.logger.log("Item: \(String(describing: itemCasted.item), privacy: .public)")
         }
-        /*
-     progress.addChild(itemProgress, withPendingUnitCount: 5)
-        progress.cancellationHandler = { completionHandler(nil, nil, NSError(domain: NSCocoaErrorDomain, code: NSUserCancelledError)) }*/
         
-        return Progress(totalUnitCount: 1)
+        return progress
     }
     
     // TODO: a new item was created on disk, process the item's creation
@@ -166,23 +136,14 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
     }
     
     func enumerator(for containerItemIdentifier: NSFileProviderItemIdentifier, request: NSFileProviderRequest) throws -> NSFileProviderEnumerator {
+        Logging.Log(message: "Enumerating", source: .FileProvider)
         // Fail if we are stil authenticating
         if(authHandler.loading) {
             throw FileProviderError.loading
         } else if(!authHandler.isLoggedIn) {
-            throw FileProviderError.notSignedIn
+            throw NSFileProviderError(.notAuthenticated)
         }
         
         return FileProviderEnumerator(enumeratedItemIdentifier: containerItemIdentifier, fpExtension: self)
     }
-    
- /*   let temporaryDirectoryURL: URL
-    
-    func makeTemporaryURL(_ purpose: String, _ ext: String? = nil) -> URL {
-        if let ext = ext {
-            return temporaryDirectoryURL.appendingPathComponent("\(purpose)-\(UUID().uuidString).\(ext)")
-        } else {
-            return temporaryDirectoryURL.appendingPathComponent("\(purpose)-\(UUID().uuidString)")
-        }
-    }*/
 }

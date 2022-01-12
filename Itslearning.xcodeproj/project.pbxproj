@@ -18,6 +18,8 @@
 		DA0266B82715F3B2004DF9DB /* Fileprovider.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA0266B72715F3B2004DF9DB /* Fileprovider.xcassets */; };
 		DA3674D6270B00FC003F39E6 /* ItslearningAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */; };
 		DA3674D7270B00FC003F39E6 /* ItslearningAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */; };
+		DA47B04E278E678900C720D3 /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47B04D278E678900C720D3 /* Console.swift */; };
+		DA47B050278E67CF00C720D3 /* LoggerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47B04F278E67CF00C720D3 /* LoggerModel.swift */; };
 		DA5455D4271F9BBA00A40CE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D06C9C2F25F7AFD400354820 /* Assets.xcassets */; };
 		DA5455D7271F9BFE00A40CE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D06C9C3125F7AFD400354820 /* Main.storyboard */; };
 		DA6B03BE26E957C400B46E1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03BD26E957C400B46E1D /* ContentView.swift */; };
@@ -65,6 +67,8 @@
 		DAF1B8C226F29389007BCDE2 /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1B8C126F29389007BCDE2 /* Controls.swift */; };
 		DAF1B8C426F293CE007BCDE2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1B8C326F293CE007BCDE2 /* Settings.swift */; };
 		DAF38E592728BD8E00192923 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF38E582728BD8E00192923 /* AppDelegate.swift */; };
+		DAF98B96278E525C0071DA53 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF98B94278E50520071DA53 /* Logging.swift */; };
+		DAF98B97278E525D0071DA53 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF98B94278E50520071DA53 /* Logging.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +147,8 @@
 		DA0266AC2715A2FC004DF9DB /* SSOResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSOResponse.swift; sourceTree = "<group>"; };
 		DA0266B02715A4FE004DF9DB /* AuthHandler+REST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthHandler+REST.swift"; sourceTree = "<group>"; };
 		DA0266B72715F3B2004DF9DB /* Fileprovider.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Fileprovider.xcassets; sourceTree = "<group>"; };
+		DA47B04D278E678900C720D3 /* Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
+		DA47B04F278E67CF00C720D3 /* LoggerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerModel.swift; sourceTree = "<group>"; };
 		DA5A9B9526FFA84F00B25514 /* PersonCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCourse.swift; sourceTree = "<group>"; };
 		DA5A9B9726FFA9B000B25514 /* CourseResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseResource.swift; sourceTree = "<group>"; };
 		DA5A9B9926FFAA3700B25514 /* ElementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementType.swift; sourceTree = "<group>"; };
@@ -170,6 +176,7 @@
 		DAF1B8C126F29389007BCDE2 /* Controls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controls.swift; sourceTree = "<group>"; };
 		DAF1B8C326F293CE007BCDE2 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		DAF38E582728BD8E00192923 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DAF98B94278E50520071DA53 /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +297,7 @@
 				DA6B03DB26EBF91D00B46E1D /* ItslearningAPI.h */,
 				DA6B03DC26EBF91D00B46E1D /* Info.plist */,
 				DAAB787B274A888B00E7997C /* Errors.swift */,
+				DAF98B94278E50520071DA53 /* Logging.swift */,
 			);
 			path = ItslearningAPI;
 			sourceTree = "<group>";
@@ -299,6 +307,7 @@
 			children = (
 				DA7D154A271F7C4300947AB5 /* FileProviderComm.swift */,
 				DA7D154C271F7C6D00947AB5 /* FullScreenModel.swift */,
+				DA47B04F278E67CF00C720D3 /* LoggerModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -320,6 +329,7 @@
 				DA7D1547271F7BCA00947AB5 /* Main.swift */,
 				DAF1B8BF26F29333007BCDE2 /* Home.swift */,
 				DAF1B8C126F29389007BCDE2 /* Controls.swift */,
+				DA47B04D278E678900C720D3 /* Console.swift */,
 				DAF1B8C326F293CE007BCDE2 /* Settings.swift */,
 				DA6EFDC126F3F4FB00AEFCFA /* Login.swift */,
 			);
@@ -496,10 +506,13 @@
 				DA0266B12715A4FE004DF9DB /* AuthHandler+REST.swift in Sources */,
 				DAE1BC9A26F10AF100DE8470 /* AuthHandler.swift in Sources */,
 				DAC6507626EF8E160029E2B1 /* OAuth2RetryHandler.swift in Sources */,
+				DAF98B97278E525D0071DA53 /* Logging.swift in Sources */,
 				DAE1BC9C26F10DDC00DE8470 /* AuthToken.swift in Sources */,
 				DAF1B8C226F29389007BCDE2 /* Controls.swift in Sources */,
 				DA7D154D271F7C6D00947AB5 /* FullScreenModel.swift in Sources */,
+				DA47B04E278E678900C720D3 /* Console.swift in Sources */,
 				DABBCF6B2707B16C005E9DDA /* ElementType.swift in Sources */,
+				DA47B050278E67CF00C720D3 /* LoggerModel.swift in Sources */,
 				DABBCF6E2707B16C005E9DDA /* PersonCourse.swift in Sources */,
 				DAF1B8C426F293CE007BCDE2 /* Settings.swift in Sources */,
 				DA7D1548271F7BCA00947AB5 /* Main.swift in Sources */,
@@ -530,6 +543,7 @@
 				DA6B03F326EC133000B46E1D /* Defaults.swift in Sources */,
 				DABBCF752707B804005E9DDA /* CourseResource.swift in Sources */,
 				DABBCF732707B804005E9DDA /* EntityListOfPersonCourse.swift in Sources */,
+				DAF98B96278E525C0071DA53 /* Logging.swift in Sources */,
 				DAE1BC9E26F114E200DE8470 /* OAuth2RetryHandler.swift in Sources */,
 				DA75743B270DC009002CADAF /* FileProviderCourseItem.swift in Sources */,
 				DAE1BC9926F10AF100DE8470 /* AuthHandler.swift in Sources */,

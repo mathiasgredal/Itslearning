@@ -21,7 +21,8 @@ struct Main: View {
                 List {
                     NavigationLink(destination: Home().environmentObject(authHandler).environmentObject(fileProviderComm), tag: 0, selection: $selection, label: {Label("Home", systemImage: "house")})
                     NavigationLink(destination: Controls(), tag: 1, selection: $selection, label: {Label("Controls", systemImage: "hammer")})
-                    NavigationLink(destination: Settings(),tag: 2,  selection: $selection, label: {Label("Settings", systemImage: "gearshape")})
+                    NavigationLink(destination: Console(), tag: 2, selection: $selection, label: {Label("Console", systemImage: "note.text")})
+                    NavigationLink(destination: Settings(),tag: 3,  selection: $selection, label: {Label("Settings", systemImage: "gearshape")})
                 }
                 Divider()
                 Button(action: {

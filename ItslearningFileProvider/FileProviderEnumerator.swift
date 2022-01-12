@@ -7,7 +7,6 @@
 import FileProvider
 import OAuth2
 import Alamofire
-import os.log
 
 
 // TODO: Move to seperate file
@@ -19,7 +18,6 @@ enum FileProviderError: Error {
 }
 
 class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
-    private let logger = Logger(subsystem: "sdu.magre21.itslearning.itslearningfileprovider", category: "enumeration")
     private let fpExtension: FileProviderExtension
     private let enumeratedItemIdentifier: NSFileProviderItemIdentifier
     private let anchor = NSFileProviderSyncAnchor("an anchor".data(using: .utf8)!)
@@ -35,18 +33,15 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
     }
     
     func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAt page: NSFileProviderPage) {
-        logger.log("Enumerating \(String(self.enumeratedItemIdentifier.rawValue), privacy: .public)")
+        Logging.Log(message: "Enumerating \(self.enumeratedItemIdentifier.rawValue)", source: .FileProvider)
         
         // First we check if the authHandler is valid
         if !fpExtension.authHandler.isLoggedIn || fpExtension.authHandler.loading {
-            self.logger.log("Not signed in")
-            let error = NSError(domain: NSFileProviderError.errorDomain,
-                                code: NSFileProviderError.notAuthenticated.rawValue, userInfo: [NSLocalizedDescriptionKey: "The user credentials cannot be verified"])
+            Logging.Log(message: "Not signed in", source: .FileProvider)
+            let error = NSError(domain: NSFileProviderErrorDomain, code: NSFileProviderError.notAuthenticated.rawValue, userInfo: [:])
             observer.finishEnumeratingWithError(error)
-            observer.finishEnumeratingWithError(FileProviderError.notSignedIn)
             return;
         }
-        
         
         if(self.enumeratedItemIdentifier == .rootContainer) {
             // Iterate courses
@@ -65,8 +60,8 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
                     })
                     observer.finishEnumerating(upTo: nil)
                 }
-                
             } catch {
+                Logging.Log(message: "Invalid Item ID: \(self.enumeratedItemIdentifier.rawValue)", source: .FileProvider)
                 observer.finishEnumeratingWithError(FileProviderError.invalidId)
             }
         }
