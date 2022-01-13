@@ -72,7 +72,7 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
         Logging.Log(message: "Fetch contents: \(itemIdentifier.rawValue), version: \(requestedVersion.debugDescription)", source: .FileProvider)
         let progress = Progress(totalUnitCount: 100);
         
-        self.item(for: itemIdentifier, request: request) { itemOpt, errorOpt in
+        let _ = self.item(for: itemIdentifier, request: request) { itemOpt, errorOpt in
             if let error = errorOpt as NSError? {
                 Logging.Log(message: "Error calling item for identifier \"\(itemIdentifier)\": \(error)", source: .FileProvider)
                 completionHandler(nil, nil, error)
@@ -165,8 +165,8 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
         if(authHandler.loading) {
             throw FileProviderError.loading
         } else if(!authHandler.isLoggedIn) {
-            throw NSFileProviderError(.notAuthenticated)
-            // throw FileProviderError.notSignedIn
+            //throw NSFileProviderError(.notAuthenticated)
+            throw FileProviderError.notSignedIn
         }
         
         return FileProviderEnumerator(enumeratedItemIdentifier: containerItemIdentifier, fpExtension: self)

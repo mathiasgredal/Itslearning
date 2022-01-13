@@ -123,7 +123,7 @@ class AuthHandler: ObservableObject {
         oauth2.accessToken = authToken.accessToken
         oauth2.accessTokenExpiry = authToken.accessTokenDate
         oauth2.refreshToken = authToken.refreshToken
-        
+                
         AF.request("https://sdu.itslearning.com/restapi/personal/courses/v1", interceptor: OAuth2RetryHandler(authHandler: self), requestModifier: { $0.timeoutInterval = 5 }).validate().response() { response in
             if(response.response?.statusCode ?? 401 >= 400) {
                 completion(false)

@@ -22,14 +22,11 @@
 		DA47B050278E67CF00C720D3 /* LoggerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47B04F278E67CF00C720D3 /* LoggerModel.swift */; };
 		DA47B055278F137D00C720D3 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47B054278F137D00C720D3 /* NetworkLogger.swift */; };
 		DA47B056278F137D00C720D3 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47B054278F137D00C720D3 /* NetworkLogger.swift */; };
+		DA47B0582790E00F00C720D3 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = DA47B0572790E00F00C720D3 /* SwiftSoup */; };
+		DA47B05A2790E01500C720D3 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = DA47B0592790E01500C720D3 /* SwiftSoup */; };
 		DA5455D4271F9BBA00A40CE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D06C9C2F25F7AFD400354820 /* Assets.xcassets */; };
 		DA5455D7271F9BFE00A40CE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D06C9C3125F7AFD400354820 /* Main.storyboard */; };
 		DA6B03BE26E957C400B46E1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03BD26E957C400B46E1D /* ContentView.swift */; };
-		DA6B03DD26EBF91D00B46E1D /* ItslearningAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = DA6B03DB26EBF91D00B46E1D /* ItslearningAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DA6B03E026EBF91D00B46E1D /* ItslearningAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */; };
-		DA6B03E126EBF91D00B46E1D /* ItslearningAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DA6B03EE26EBF99100B46E1D /* ItslearningAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */; };
-		DA6B03EF26EBF99100B46E1D /* ItslearningAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DA6B03F326EC133000B46E1D /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EB26EBF97800B46E1D /* Defaults.swift */; };
 		DA6B03F426EC133100B46E1D /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B03EB26EBF97800B46E1D /* Defaults.swift */; };
 		DA6B03FA26EC1EB500B46E1D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DA6B03F926EC1EB500B46E1D /* Alamofire */; };
@@ -39,9 +36,6 @@
 		DA7D1548271F7BCA00947AB5 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7D1547271F7BCA00947AB5 /* Main.swift */; };
 		DA7D154B271F7C4300947AB5 /* FileProviderComm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7D154A271F7C4300947AB5 /* FileProviderComm.swift */; };
 		DA7D154D271F7C6D00947AB5 /* FullScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7D154C271F7C6D00947AB5 /* FullScreenModel.swift */; };
-		DA89DF7526F3849400D0C114 /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = DA89DF7426F3849400D0C114 /* OAuth2 */; };
-		DA89DF7726F3849700D0C114 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DA89DF7626F3849700D0C114 /* Alamofire */; };
-		DAA76B94272608DA008DEE7E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = DAA76B93272608DA008DEE7E /* SwiftSoup */; };
 		DAAB787927488CD600E7997C /* ItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB787727488CCE00E7997C /* ItemID.swift */; };
 		DAAB787A27488CD600E7997C /* ItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB787727488CCE00E7997C /* ItemID.swift */; };
 		DAAB787D274A889B00E7997C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB787B274A888B00E7997C /* Errors.swift */; };
@@ -81,20 +75,6 @@
 			remoteGlobalIDString = D06C9C3E25F7B01300354820;
 			remoteInfo = SomeProvider;
 		};
-		DA6B03DE26EBF91D00B46E1D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D06C9C2025F7AFD200354820 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DA6B03D826EBF91D00B46E1D;
-			remoteInfo = ItslearningAPI;
-		};
-		DA6B03F026EBF99100B46E1D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D06C9C2025F7AFD200354820 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DA6B03D826EBF91D00B46E1D;
-			remoteInfo = ItslearningAPI;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -115,7 +95,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DA6B03E126EBF91D00B46E1D /* ItslearningAPI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,7 +105,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				DA6B03EF26EBF99100B46E1D /* ItslearningAPI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,7 +134,6 @@
 		DA5A9B9726FFA9B000B25514 /* CourseResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseResource.swift; sourceTree = "<group>"; };
 		DA5A9B9926FFAA3700B25514 /* ElementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementType.swift; sourceTree = "<group>"; };
 		DA6B03BD26E957C400B46E1D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ItslearningAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6B03DB26EBF91D00B46E1D /* ItslearningAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItslearningAPI.h; sourceTree = "<group>"; };
 		DA6B03DC26EBF91D00B46E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA6B03EA26EBF97800B46E1D /* ItslearningAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItslearningAPI.swift; sourceTree = "<group>"; };
@@ -189,7 +166,7 @@
 			files = (
 				DAE1BC9126F1093600DE8470 /* OAuth2 in Frameworks */,
 				DA6B03FA26EC1EB500B46E1D /* Alamofire in Frameworks */,
-				DA6B03E026EBF91D00B46E1D /* ItslearningAPI.framework in Frameworks */,
+				DA47B0582790E00F00C720D3 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,17 +176,7 @@
 			files = (
 				DAE1BC9326F1094200DE8470 /* OAuth2 in Frameworks */,
 				DAC6507C26EF9AAE0029E2B1 /* Alamofire in Frameworks */,
-				DA6B03EE26EBF99100B46E1D /* ItslearningAPI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DA6B03D626EBF91D00B46E1D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DA89DF7526F3849400D0C114 /* OAuth2 in Frameworks */,
-				DA89DF7726F3849700D0C114 /* Alamofire in Frameworks */,
-				DAA76B94272608DA008DEE7E /* SwiftSoup in Frameworks */,
+				DA47B05A2790E01500C720D3 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,7 +200,6 @@
 			children = (
 				D06C9C2825F7AFD200354820 /* Itslearning.app */,
 				D06C9C3F25F7B01300354820 /* ItslearningFileProvider.appex */,
-				DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -342,17 +308,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		DA6B03D426EBF91D00B46E1D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DA6B03DD26EBF91D00B46E1D /* ItslearningAPI.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		D06C9C2725F7AFD200354820 /* Itslearning */ = {
 			isa = PBXNativeTarget;
@@ -368,12 +323,12 @@
 			);
 			dependencies = (
 				D06C9C4A25F7B01300354820 /* PBXTargetDependency */,
-				DA6B03DF26EBF91D00B46E1D /* PBXTargetDependency */,
 			);
 			name = Itslearning;
 			packageProductDependencies = (
 				DA6B03F926EC1EB500B46E1D /* Alamofire */,
 				DAE1BC9026F1093600DE8470 /* OAuth2 */,
+				DA47B0572790E00F00C720D3 /* SwiftSoup */,
 			);
 			productName = SomeProduct;
 			productReference = D06C9C2825F7AFD200354820 /* Itslearning.app */;
@@ -391,39 +346,16 @@
 			buildRules = (
 			);
 			dependencies = (
-				DA6B03F126EBF99100B46E1D /* PBXTargetDependency */,
 			);
 			name = ItslearningFileProvider;
 			packageProductDependencies = (
 				DAC6507B26EF9AAE0029E2B1 /* Alamofire */,
 				DAE1BC9226F1094200DE8470 /* OAuth2 */,
+				DA47B0592790E01500C720D3 /* SwiftSoup */,
 			);
 			productName = SomeProvider;
 			productReference = D06C9C3F25F7B01300354820 /* ItslearningFileProvider.appex */;
 			productType = "com.apple.product-type.app-extension";
-		};
-		DA6B03D826EBF91D00B46E1D /* ItslearningAPI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DA6B03E526EBF91D00B46E1D /* Build configuration list for PBXNativeTarget "ItslearningAPI" */;
-			buildPhases = (
-				DA6B03D426EBF91D00B46E1D /* Headers */,
-				DA6B03D526EBF91D00B46E1D /* Sources */,
-				DA6B03D626EBF91D00B46E1D /* Frameworks */,
-				DA6B03D726EBF91D00B46E1D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ItslearningAPI;
-			packageProductDependencies = (
-				DA89DF7426F3849400D0C114 /* OAuth2 */,
-				DA89DF7626F3849700D0C114 /* Alamofire */,
-				DAA76B93272608DA008DEE7E /* SwiftSoup */,
-			);
-			productName = ItslearningAPI;
-			productReference = DA6B03D926EBF91D00B46E1D /* ItslearningAPI.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -439,10 +371,6 @@
 					};
 					D06C9C3E25F7B01300354820 = {
 						CreatedOnToolsVersion = 12.5;
-					};
-					DA6B03D826EBF91D00B46E1D = {
-						CreatedOnToolsVersion = 12.5;
-						LastSwiftMigration = 1310;
 					};
 				};
 			};
@@ -466,7 +394,6 @@
 			targets = (
 				D06C9C2725F7AFD200354820 /* Itslearning */,
 				D06C9C3E25F7B01300354820 /* ItslearningFileProvider */,
-				DA6B03D826EBF91D00B46E1D /* ItslearningAPI */,
 			);
 		};
 /* End PBXProject section */
@@ -486,13 +413,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA0266B82715F3B2004DF9DB /* Fileprovider.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DA6B03D726EBF91D00B46E1D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,13 +481,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA6B03D526EBF91D00B46E1D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -575,16 +488,6 @@
 			isa = PBXTargetDependency;
 			target = D06C9C3E25F7B01300354820 /* ItslearningFileProvider */;
 			targetProxy = D06C9C4925F7B01300354820 /* PBXContainerItemProxy */;
-		};
-		DA6B03DF26EBF91D00B46E1D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DA6B03D826EBF91D00B46E1D /* ItslearningAPI */;
-			targetProxy = DA6B03DE26EBF91D00B46E1D /* PBXContainerItemProxy */;
-		};
-		DA6B03F126EBF99100B46E1D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DA6B03D826EBF91D00B46E1D /* ItslearningAPI */;
-			targetProxy = DA6B03F026EBF99100B46E1D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -814,65 +717,6 @@
 			};
 			name = Release;
 		};
-		DA6B03E326EBF91D00B46E1D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 29F52FMUP9;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ItslearningAPI/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				PRODUCT_BUNDLE_IDENTIFIER = sdu.magre21.itslearningapp.itslearningapi;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		DA6B03E426EBF91D00B46E1D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 29F52FMUP9;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ItslearningAPI/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				PRODUCT_BUNDLE_IDENTIFIER = sdu.magre21.itslearningapp.itslearningapi;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -899,15 +743,6 @@
 			buildConfigurations = (
 				D06C9C4D25F7B01300354820 /* Debug */,
 				D06C9C4E25F7B01300354820 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DA6B03E526EBF91D00B46E1D /* Build configuration list for PBXNativeTarget "ItslearningAPI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DA6B03E326EBF91D00B46E1D /* Debug */,
-				DA6B03E426EBF91D00B46E1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -942,25 +777,20 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DA47B0572790E00F00C720D3 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAA76B92272608DA008DEE7E /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		DA47B0592790E01500C720D3 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAA76B92272608DA008DEE7E /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
 		DA6B03F926EC1EB500B46E1D /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DA6B03F826EC1EB500B46E1D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		DA89DF7426F3849400D0C114 /* OAuth2 */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DAE1BC8F26F1093600DE8470 /* XCRemoteSwiftPackageReference "OAuth2" */;
-			productName = OAuth2;
-		};
-		DA89DF7626F3849700D0C114 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DA6B03F826EC1EB500B46E1D /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		DAA76B93272608DA008DEE7E /* SwiftSoup */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DAA76B92272608DA008DEE7E /* XCRemoteSwiftPackageReference "SwiftSoup" */;
-			productName = SwiftSoup;
 		};
 		DAC6507B26EF9AAE0029E2B1 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

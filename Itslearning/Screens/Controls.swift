@@ -50,6 +50,15 @@ struct Controls: View {
                         Spacer()
                     }
                 }
+                GroupBox(label:Label("Caching", systemImage: "deskclock")) {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Enable disable caching")
+                            Text("Time-to-live(TTL) level:")
+                        }
+                        Spacer()
+                    }
+                }
                 Spacer()
             }.padding()
         }

@@ -36,7 +36,12 @@ struct Home: View {
                 Text("Reload")
             })
             Button( action: {
-
+                /*authHandler.ReloadAuthToken(completion: { status in
+                    Logging.Log(message: "Reloaded token", source: .MainApp)
+                })*/
+                ItslearningAPI.GetCourses(authHandler) { response in
+                    print(response.data)
+                }
             }, label: {
                 Text("Test API")
             })
