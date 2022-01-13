@@ -47,13 +47,6 @@ jobs:
           SIGNING_CERTIFICATE_P12_DATA: ${{ secrets.SIGNING_CERTIFICATE_P12_DATA }}
           SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.SIGNING_CERTIFICATE_PASSWORD }}
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-
-      - name: Build and test app
-        shell: bash --noprofile --norc -eo pipefail {0}
-        run: |
-          xcodebuild -scheme "$SCHEME" test CODE_SIGN_IDENTITY=- | xcpretty
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       - name: Build and install app
         shell: bash --noprofile --norc -eo pipefail {0}
         run: |
