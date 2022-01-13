@@ -6,7 +6,6 @@
 
 import Cocoa
 import SwiftUI
-import ItslearningAPI
 import FileProvider
 import Combine
 import OAuth2
