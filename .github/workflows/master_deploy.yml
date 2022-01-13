@@ -50,7 +50,7 @@ jobs:
       - name: Build and install app
         shell: bash --noprofile --norc -eo pipefail {0}
         run: |
-          xcodebuild -scheme "$SCHEME" install DSTROOT=build/root | xcpretty
+          xcodebuild -scheme "$SCHEME" -allowProvisioningUpdates install DSTROOT=build/root | xcpretty
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       - name: Package app
