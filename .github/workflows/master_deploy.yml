@@ -15,7 +15,8 @@ jobs:
       - name: Find first scheme of default project
         run: |
           echo "::set-env name=SCHEME::$(xcodebuild -list -json | jq -r '.project.schemes[0]')"
-          
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       - name: Set environment variables from project settings
         run: |
           function set-env-from-proj { 
@@ -27,6 +28,8 @@ jobs:
           set-env-from-proj PRODUCT_MODULE_NAME
           set-env-from-proj PRODUCT_NAME
           set-env-from-proj PROJECT_NAME
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       - name: Import signing certificate into keychain
         run: |
           KEYCHAIN_FILE=default.keychain
@@ -43,27 +46,35 @@ jobs:
         env:
           SIGNING_CERTIFICATE_P12_DATA: ${{ secrets.SIGNING_CERTIFICATE_P12_DATA }}
           SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.SIGNING_CERTIFICATE_PASSWORD }}
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
       - name: Build and test app
         shell: bash --noprofile --norc -eo pipefail {0}
         run: |
           xcodebuild -scheme "$SCHEME" test CODE_SIGN_IDENTITY=- | xcpretty
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       - name: Build and install app
         shell: bash --noprofile --norc -eo pipefail {0}
         run: |
           xcodebuild -scheme "$SCHEME" install DSTROOT=build/root | xcpretty
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       - name: Package app
         run: |
           hdiutil create \
                   -fs HFS+ \
                   -srcfolder "build/root/$INSTALL_PATH/$FULL_PRODUCT_NAME" \
                   -volname "$PRODUCT_NAME" "build/$PRODUCT_MODULE_NAME.dmg"
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       - name: Notarize app
         run: |
           npx notarize-cli --file "build/$PRODUCT_MODULE_NAME.dmg"
         env:
           NOTARIZE_USERNAME: ${{ secrets.NOTARIZE_USERNAME }}
           NOTARIZE_PASSWORD: ${{ secrets.NOTARIZE_PASSWORD }}
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
       - name: Release app
         uses: softprops/action-gh-release@v1
@@ -71,3 +82,4 @@ jobs:
           files: build/${{ env.PRODUCT_MODULE_NAME }}.dmg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
