@@ -44,14 +44,6 @@ jobs:
                   -volname "$PRODUCT_NAME" "build/$PRODUCT_MODULE_NAME.dmg"
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-      - name: Notarize app
-        run: |
-          npx notarize-cli --file "build/$PRODUCT_MODULE_NAME.dmg"
-        env:
-          NOTARIZE_USERNAME: ${{ secrets.NOTARIZE_USERNAME }}
-          NOTARIZE_PASSWORD: ${{ secrets.NOTARIZE_PASSWORD }}
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-
       - name: Release app
         uses: softprops/action-gh-release@v1
         with:
