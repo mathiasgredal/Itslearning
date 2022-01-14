@@ -1,5 +1,5 @@
-# Itslearning fileprovider
-*Advarsel: Dette program er Work-In-Progress og leveres uden garanti af nogen art. Forfatteren kan under ingen omstændigheder holdes til ansvar for nogle krav, skader, datatab m.m. i forbindelse med anvendelse af denne software.*
+# Itslearning Fileprovider
+*Advarsel: Dette program er Work-In-Progress og leveres uden garanti af nogen art. Forfatteren kan under ingen omstændigheder holdes til ansvar for nogle krav, skader, datatab m.m. i forbindelse med anvendelse af denne software, i videst muligt omfang tilladt ved lov.*
 
 Dette er et program til MacOS, som benyttes til at tilgå ressourcer i Itslearning igennem Finder.
 
