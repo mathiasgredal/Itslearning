@@ -24,7 +24,7 @@ Dette er et program til MacOS, som benyttes til at tilgå ressourcer i Itslearni
   - <img width="700" alt="Screenshot 2022-01-14 at 01 53 25" src="https://user-images.githubusercontent.com/20731972/149432558-8cdb1fdf-a28b-4ee4-81f7-d5ab975a14e7.png">
 - Tryk på pilen i øverste venstre hjørne for at bygge og afvikle projektet
 
-**Brugs instrukser:**
+**Brugsinstrukser:**
 - Login
 - Tryk på "Register FP" for at slå fileprovideren til
 - Åben Finder, hvor der burde være en ny mappe i venstre side
