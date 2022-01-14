@@ -8,9 +8,9 @@ Dette er et program til MacOS, som benyttes til at tilgå ressourcer i Itslearni
 
 
 
-**Installation af program:**
-- Download nyeste version fra releases: https://github.com/mathiasgredal/Itslearning/releases/
-- Kompiler selv med XCode(se næste afsnit)
+**Installation af program(2 valgmuligheder):**
+1. Download nyeste version fra releases: https://github.com/mathiasgredal/Itslearning/releases/
+2. Kompiler selv med XCode(se næste afsnit)
 
 **Byg selv programmet:**
 - Sikre at XCode og git er installeret.
