@@ -1,6 +1,9 @@
 # Itslearning fileprovider
 Dette er et program til MacOS, som benyttes til at tilgå ressourcer i Itslearning igennem Finder.
 
+<img width="1220" alt="image" src="https://user-images.githubusercontent.com/20731972/149433369-68473b73-a921-4f5f-819d-b51d7a8f7bd0.png">
+
+
 *Advarsel: Dette program er Work-In-Progress og leveres uden garanti af nogen art. Forfatteren kan under ingen omstændigheder holdes til ansvar for nogle krav, skader, datatab m.m. i forbindelse med anvendelse af denne software.*
 
 **Installation af program:**
