@@ -15,8 +15,8 @@ class AuthHandler: ObservableObject {
     /// NOTE: The client id "10ae9d30-1853-48ff-81cb-47b58a325685", is a value extracted from the itslearning app apk file
     public let oauth2 = OAuth2CodeGrant(settings: [
         "client_id": "10ae9d30-1853-48ff-81cb-47b58a325685",
-        "authorize_uri": "https://sdu.itslearning.com/oauth2/authorize.aspx",
-        "token_uri": "https://sdu.itslearning.com/restapi/oauth2/token",
+        "authorize_uri": "https://\(Constants.itslearningBaseDomain)/oauth2/authorize.aspx",
+        "token_uri": "https://\(Constants.itslearningBaseDomain)/restapi/oauth2/token",
         "redirect_uris": ["itsl-itslearning://login"],
         "scope": "SCOPE",
         "secret_in_body": false,

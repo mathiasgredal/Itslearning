@@ -88,7 +88,7 @@ public enum ItslearningAPI {
     }
     
     static func DownloadFile(_ authHandler: AuthHandler, resourceId: ItemID, file: URL, completion: @escaping ((url: String?, error: Error?)) -> ()) -> Progress {
-        let urlSSO = "https://sdu.itslearning.com/LearningToolElement/ViewLearningToolElement.aspx?LearningToolElementId=\(resourceId.baseItem)"
+        let urlSSO = "https://\(Constants.itslearningBaseDomain)/LearningToolElement/ViewLearningToolElement.aspx?LearningToolElementId=\(resourceId.baseItem)"
         let downloadProgress = Progress(totalUnitCount: 100);
         
         authHandler.GetRequestSSO(url: urlSSO) { response in
@@ -265,11 +265,11 @@ public enum ItslearningAPI {
     ///   - queryItems: all the query items for the request
     ///   - authToken: A valid auth token to be added to the request
     /// - Returns: The final url
-    static func GenerateItslearningURL(domain: String, path: String, queryItems: [String: String] = [:], accessToken: String) -> String? {
+    static func GenerateItslearningURL(path: String, queryItems: [String: String] = [:], accessToken: String) -> String? {
         var components = URLComponents()
         
         components.scheme = "https"
-        components.host = domain
+        components.host = Constants.itslearningBaseDomain
         components.path = path
         components.queryItems = queryItems.map({ elem in
                 return URLQueryItem(name: elem.key, value: elem.value)

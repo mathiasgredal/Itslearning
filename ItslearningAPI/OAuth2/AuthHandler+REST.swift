@@ -50,7 +50,7 @@ extension AuthHandler {
         }
         
         // Step 3: Construct url
-        guard let url = ItslearningAPI.GenerateItslearningURL(domain: Constants.itslearningBaseDomain, path: path, queryItems: queryItems, accessToken: accessToken) else {
+        guard let url = ItslearningAPI.GenerateItslearningURL(path: path, queryItems: queryItems, accessToken: accessToken) else {
             completion((nil, "Could not construct url".asAFError))
             return
         }
