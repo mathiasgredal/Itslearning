@@ -12,25 +12,58 @@ extension AuthHandler {
     
     /// Make request and retry once in case of 401 unauthorized
     private func GetRequest(url: String, refreshed: Bool = false, completion: @escaping ((data: Data?, error: AFError?))->()) {
-        AF.request(url).validate().response { response in
-            switch(response.result) {
-            case .success(let data):
-                completion((data, nil))
-                break
-            case .failure(let error):
+        Logging.Log(message: "Making get request: " + url, source: .MainApp)
+
+        manager.request(url).validate().response { response in
+            if(response.error != nil || response.response?.statusCode == 401) {
+                Logging.Log(message: "Error in get request", source: .MainApp)
+
                 if(refreshed) {
                     Logging.Log(message: "Request failed after reload", source: .MainApp)
-                    completion((nil, error))
+                    completion((nil, response.error))
                 } else {
+                    Logging.Log(message: "Doing auth token reload", source: .MainApp)
+
                     self.ReloadAuthToken(completion: { success in
                         if(success) {
-                            self.GetRequest(url: url, refreshed: true, completion: completion)
+                            Logging.Log(message: "Successfully reloaded trying request again", source: .MainApp)
+                            
+                            // We need to rewrite the url
+                            guard var urlComponents = URLComponents(string: url) else {
+                                return
+                            }
+                            
+                            // Get the queryitems, if they don't exist then we don't need to add a new access token
+                            guard var queryItems = urlComponents.queryItems else {
+                                self.GetRequest(url: url, refreshed: true, completion: completion)
+                                return
+                            }
+                            
+                            // Remove all access tokens from query items
+                            queryItems.enumerated().filter({ $0.element.name == "access_token" }).forEach({queryItems.remove(at: $0.offset)})
+                            
+                            // Add updated access token back
+                            queryItems += [URLQueryItem(name: "access_token", value: self.GetAuthToken()?.accessToken)]
+                            
+                            // Apply the new query items
+                            urlComponents.queryItems = queryItems
+                            
+                            // Generate teh new url
+                            guard let newUrl = urlComponents.string else {
+                                completion((nil, "Could not update query items".asAFError))
+                                return
+                            }
+                            
+                            // Rerun the get request
+                            self.GetRequest(url: newUrl, refreshed: true, completion: completion)
                         } else {
-                            completion((nil, error))
+                            Logging.Log(message: "Failed to reload", source: .MainApp)
+                            completion((nil, response.error))
                         }
                     })
                 }
-                break
+            } else {
+                completion((response.data, nil))
             }
         }
     }

@@ -26,11 +26,21 @@ class AuthHandler: ObservableObject {
     @Published public var loading: Bool = true
     @Published public var isLoggedIn: Bool = false
     
+    let manager: Alamofire.Session
+    
+    
     /// The constructor creates an AuthHandler instance,
     /// and if successful set the member variable isLoggedIn to true and calls the completion handler with the parameter true.
     /// Otherwise it calls it the completion handler with false
     init() {
         Logging.Log(message: "Initialising Auth Handler", source: .AuthHandler)
+
+        // Create ephemeral session manager
+        let config = URLSessionConfiguration.default
+        config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        config.urlCache = nil
+        self.manager = Alamofire.Session(configuration: config)
+        
         
         VerifyAuthToken() { success in
             if(success) {
@@ -79,11 +89,13 @@ class AuthHandler: ObservableObject {
         
         oauth2.doRefreshToken(params: ["federated_login_provider_id": "0"]) { keys, error in
             if let unwrappedError = error {
-                Logging.Log(message: unwrappedError.description, source: .AuthHandler)
+                Logging.Log(message: "Refresh token error: \(unwrappedError.description)", source: .AuthHandler)
                 completion(false)
                 return
             }
             
+            Logging.Log(message: "Successfully reloaded auth token", source: .AuthHandler)
+
             // No error occured, we can safely store the new tokens
             self.SaveTokens()
             completion(true)
@@ -117,7 +129,6 @@ class AuthHandler: ObservableObject {
         ItslearningAPI.GetCourses(self) { response in
             // TODO: You cannot login if you don't have any courses, perhaps match against another endpoint
             if(response.data.isEmpty) {
-                Logging.Log(message: "\(response.error.debugDescription)", source: .AuthHandler)
                 Logging.Log(message: "Failed to verify auth token", source: .AuthHandler)
                 completion(false)
             } else {
