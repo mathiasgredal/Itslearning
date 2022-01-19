@@ -13,7 +13,7 @@ Dette er et program til MacOS, som benyttes til at tilgå ressourcer i Itslearni
 2. Kompiler selv med XCode(se næste afsnit)
 
 **Byg selv programmet:**
-- Sikre at XCode og git er installeret.
+- Tjek at XCode og git er installeret.
 - Download en kopi at koden: `git clone https://github.com/mathiasgredal/Itslearning.git`
 - Åben projektet i XCode
 - Sæt eget team til signering af programmet for både Itslearning og ItslearningFileProvider og noter det nye app-gruppe id
