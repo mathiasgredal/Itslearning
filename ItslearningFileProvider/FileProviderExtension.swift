@@ -44,6 +44,7 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
             case .Course:
                 ItslearningAPI.GetCourse(authHandler, itemID: itemId) { response in
                     guard let course = response.course else {
+                        Logging.Log(message: response.error.debugDescription, source: .FileProvider)
                         completionHandler(nil, response.error)
                         return
                     }
@@ -53,6 +54,7 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
             case .Resource:
                 ItslearningAPI.GetResource(authHandler, resourceId: itemId) { response in
                     guard let data = response.data else {
+                        Logging.Log(message: response.error.debugDescription, source: .FileProvider)
                         completionHandler(nil, response.error)
                         return
                     }
@@ -61,6 +63,7 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
                 break
             }
         } catch let error {
+            Logging.Log(message: error.asAFError.debugDescription, source: .FileProvider)
             completionHandler(nil, error)
         }
         
@@ -160,13 +163,10 @@ class FileProviderExtension: NSObject, NSFileProviderReplicatedExtension {
     }
     
     func enumerator(for containerItemIdentifier: NSFileProviderItemIdentifier, request: NSFileProviderRequest) throws -> NSFileProviderEnumerator {
-        Logging.Log(message: "Enumerating", source: .FileProvider)
-        // Fail if we are stil authenticating
-        if(authHandler.loading) {
-            throw FileProviderError.loading
-        } else if(!authHandler.isLoggedIn) {
-            //throw NSFileProviderError(.notAuthenticated)
-            throw FileProviderError.notSignedIn
+        // Do some basic checks for log-in status
+        if((!authHandler.loading && !authHandler.isLoggedIn) ||
+           authHandler.GetAuthToken() == nil) {
+            throw NSFileProviderError(.notAuthenticated)
         }
         
         return FileProviderEnumerator(enumeratedItemIdentifier: containerItemIdentifier, fpExtension: self)

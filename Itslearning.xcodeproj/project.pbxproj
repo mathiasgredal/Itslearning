@@ -50,7 +50,6 @@
 		DABBCF732707B804005E9DDA /* EntityListOfPersonCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABBCF652707ADE2005E9DDA /* EntityListOfPersonCourse.swift */; };
 		DABBCF752707B804005E9DDA /* CourseResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A9B9726FFA9B000B25514 /* CourseResource.swift */; };
 		DABBCF762707B804005E9DDA /* PersonCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A9B9526FFA84F00B25514 /* PersonCourse.swift */; };
-		DAC6507626EF8E160029E2B1 /* OAuth2RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC6507526EF8E160029E2B1 /* OAuth2RetryHandler.swift */; };
 		DAC6507C26EF9AAE0029E2B1 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DAC6507B26EF9AAE0029E2B1 /* Alamofire */; };
 		DAE1BC9126F1093600DE8470 /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = DAE1BC9026F1093600DE8470 /* OAuth2 */; };
 		DAE1BC9326F1094200DE8470 /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = DAE1BC9226F1094200DE8470 /* OAuth2 */; };
@@ -58,7 +57,6 @@
 		DAE1BC9A26F10AF100DE8470 /* AuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE1BC9726F10ACF00DE8470 /* AuthHandler.swift */; };
 		DAE1BC9C26F10DDC00DE8470 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE1BC9B26F10DDC00DE8470 /* AuthToken.swift */; };
 		DAE1BC9D26F10DDC00DE8470 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE1BC9B26F10DDC00DE8470 /* AuthToken.swift */; };
-		DAE1BC9E26F114E200DE8470 /* OAuth2RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC6507526EF8E160029E2B1 /* OAuth2RetryHandler.swift */; };
 		DAF1B8C026F29333007BCDE2 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1B8BF26F29333007BCDE2 /* Home.swift */; };
 		DAF1B8C226F29389007BCDE2 /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1B8C126F29389007BCDE2 /* Controls.swift */; };
 		DAF1B8C426F293CE007BCDE2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1B8C326F293CE007BCDE2 /* Settings.swift */; };
@@ -149,7 +147,6 @@
 		DAAB787B274A888B00E7997C /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		DABBCF652707ADE2005E9DDA /* EntityListOfPersonCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityListOfPersonCourse.swift; sourceTree = "<group>"; };
 		DABBCF672707AEC1005E9DDA /* CourseFolderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseFolderDetails.swift; sourceTree = "<group>"; };
-		DAC6507526EF8E160029E2B1 /* OAuth2RetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2RetryHandler.swift; sourceTree = "<group>"; };
 		DAE1BC9726F10ACF00DE8470 /* AuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHandler.swift; sourceTree = "<group>"; };
 		DAE1BC9B26F10DDC00DE8470 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		DAF1B8BF26F29333007BCDE2 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -285,7 +282,6 @@
 		DAE1BC9626F10A8D00DE8470 /* OAuth2 */ = {
 			isa = PBXGroup;
 			children = (
-				DAC6507526EF8E160029E2B1 /* OAuth2RetryHandler.swift */,
 				DAE1BC9B26F10DDC00DE8470 /* AuthToken.swift */,
 				DAE1BC9726F10ACF00DE8470 /* AuthHandler.swift */,
 				DA0266B02715A4FE004DF9DB /* AuthHandler+REST.swift */,
@@ -429,7 +425,6 @@
 				DA7D154B271F7C4300947AB5 /* FileProviderComm.swift in Sources */,
 				DA0266B12715A4FE004DF9DB /* AuthHandler+REST.swift in Sources */,
 				DAE1BC9A26F10AF100DE8470 /* AuthHandler.swift in Sources */,
-				DAC6507626EF8E160029E2B1 /* OAuth2RetryHandler.swift in Sources */,
 				DAF98B97278E525D0071DA53 /* Logging.swift in Sources */,
 				DAE1BC9C26F10DDC00DE8470 /* AuthToken.swift in Sources */,
 				DAF1B8C226F29389007BCDE2 /* Controls.swift in Sources */,
@@ -470,7 +465,6 @@
 				DABBCF752707B804005E9DDA /* CourseResource.swift in Sources */,
 				DABBCF732707B804005E9DDA /* EntityListOfPersonCourse.swift in Sources */,
 				DAF98B96278E525C0071DA53 /* Logging.swift in Sources */,
-				DAE1BC9E26F114E200DE8470 /* OAuth2RetryHandler.swift in Sources */,
 				DA75743B270DC009002CADAF /* FileProviderCourseItem.swift in Sources */,
 				DAE1BC9926F10AF100DE8470 /* AuthHandler.swift in Sources */,
 				DAAB787A27488CD600E7997C /* ItemID.swift in Sources */,

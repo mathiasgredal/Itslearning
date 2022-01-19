@@ -36,20 +36,29 @@ struct Home: View {
                 Text("Reload")
             })
             Button( action: {
-                /*authHandler.ReloadAuthToken(completion: { status in
+                authHandler.ReloadAuthToken(completion: { status in
                     Logging.Log(message: "Reloaded token", source: .MainApp)
-                })*/
-                ItslearningAPI.GetCourses(authHandler) { response in
-                    print(response.data)
-                }
+                })
             }, label: {
                 Text("Test API")
             })
             
             Button( action: {
-                print(authHandler.GetAuthToken() ?? "No auth token")
+                guard var authToken = authHandler.GetAuthToken() else {
+                    return
+                }
+                
+                authToken.accessToken = "hello"
+                let encoder = JSONEncoder()
+                do {
+                    let data = try encoder.encode(authToken)
+                    UserDefaults.sharedContainerDefaults.set(data, forKey: "authToken")
+                } catch {
+                    print("Error")
+                }
+                
             }, label: {
-                Text("Print token")
+                Text("Clear access token")
             })
             
         }

@@ -19,8 +19,7 @@ public enum ItslearningAPI {
     /// - Returns: The return value is in the completion handler
     static func GetCourses(_ authHandler: AuthHandler, completion: @escaping ((data: [PersonCourse], error: AFError?))->()){
         // TODO: Do paging of API
-        let url = "https://sdu.itslearning.com/restapi/personal/courses/v2"
-        authHandler.GetRequest(url: url, type: EntityListOfPersonCourse.self) { response in
+        authHandler.GetRequest(path: "/restapi/personal/courses/v2", type: EntityListOfPersonCourse.self) { response in
             guard let data = response.data else {
                 completion(([], response.error))
                 return
@@ -56,11 +55,13 @@ public enum ItslearningAPI {
     ///   - completion: A completion handler, with the return value passed as a parameter, an empty list is returned in case of an error
     /// - Returns: The return value is in the completion handler
     static func GetResources(_ authHandler: AuthHandler, itemId: ItemID, completion: @escaping ([CourseResource])->()) {
-        let url = itemId.itemType == .Course ? "https://sdu.itslearning.com/restapi/personal/courses/\(itemId.courseId)/resources/v1" : "https://sdu.itslearning.com/restapi/personal/courses/\(itemId.courseId)/folders/\(itemId.baseItem)/resources/v1";
+        let path = itemId.itemType == .Course ? "/restapi/personal/courses/\(itemId.courseId)/resources/v1" : "/restapi/personal/courses/\(itemId.courseId)/folders/\(itemId.baseItem)/resources/v1";
         
-        authHandler.GetRequest(url: url, type: CourseFolderDetails.self) { response in
+        authHandler.GetRequest(path: path, type: CourseFolderDetails.self) { response in
             guard let data = response.data else {
                 print(response.error ?? "Unknown error")
+                
+                // TODO: We cannot just pretend that errors don't exist
                 completion([])
                 return;
             }
@@ -79,7 +80,7 @@ public enum ItslearningAPI {
     
     /// Lookup resource by id
     static func GetResource(_ authHandler: AuthHandler, resourceId: ItemID, completion: @escaping ((data: CourseResource?, error: AFError?))->()) {
-        authHandler.GetRequest(url: "https://sdu.itslearning.com/restapi/personal/courses/resources/\(resourceId.baseItem)/v1", type: CourseResource.self) { response in
+        authHandler.GetRequest(path: "/restapi/personal/courses/resources/\(resourceId.baseItem)/v1", type: CourseResource.self) { response in
             var responseWithId = response
             responseWithId.data?.itemId = resourceId
             completion(responseWithId)
@@ -255,5 +256,25 @@ public enum ItslearningAPI {
         case .CustomActivity:
             return true
         }
+    }
+    
+    /// Create the itslearning api url
+    /// - Parameters:
+    ///   - domain: Should be the domain name for the users itslearning website
+    ///   - path: The path without query items eg. "/restapi/personal/courses/v2"
+    ///   - queryItems: all the query items for the request
+    ///   - authToken: A valid auth token to be added to the request
+    /// - Returns: The final url
+    static func GenerateItslearningURL(domain: String, path: String, queryItems: [String: String] = [:], accessToken: String) -> String? {
+        var components = URLComponents()
+        
+        components.scheme = "https"
+        components.host = domain
+        components.path = path
+        components.queryItems = queryItems.map({ elem in
+                return URLQueryItem(name: elem.key, value: elem.value)
+            }) + [URLQueryItem(name: "access_token", value: accessToken)]
+   
+        return components.url?.absoluteString
     }
 }

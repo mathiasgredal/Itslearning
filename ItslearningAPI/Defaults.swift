@@ -9,7 +9,8 @@ import Foundation
 extension String: Error {}
 
 struct Constants {
-     static let appGroupId = "ZF8FHQ365P."
+    static let appGroupId = "ZF8FHQ365P."
+    static let itslearningBaseDomain = "sdu.itslearning.com"
 }
 
 extension Notification.Name {

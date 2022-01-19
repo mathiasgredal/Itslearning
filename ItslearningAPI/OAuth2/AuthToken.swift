@@ -15,6 +15,5 @@ struct AuthToken: Codable {
         self.accessToken = accessToken
         self.refreshToken = refreshToken
         self.accessTokenDate = accessTokenDate
-
     }
 }

@@ -18,7 +18,7 @@ struct Controls: View {
                         VStack(alignment: .leading) {
                             Text("Access token").padding(2)
                             Text("Refresh token").padding(2)
-                            Text("Last token update").padding(2)
+                            Text("Last refresh(UTC)").padding(2)
                         }
                         VStack(alignment: .leading) {
                             Text("\(authHandler.GetAuthToken()?.accessToken ?? "Unknown")").padding(2)
