@@ -14,7 +14,7 @@ Dette er et program til MacOS, som benyttes til at tilgå ressourcer i Itslearni
 
 **Byg selv programmet:**
 - Tjek at XCode og git er installeret.
-- Download en kopi at koden: `git clone https://github.com/mathiasgredal/Itslearning.git`
+- Download en kopi af koden: `git clone https://github.com/mathiasgredal/Itslearning.git`
 - Åben projektet i XCode
 - Sæt eget team til signering af programmet for både Itslearning og ItslearningFileProvider og noter det nye app-gruppe id
   - <img width="700" alt="Screenshot 2022-01-14 at 01 53 25" src="https://user-images.githubusercontent.com/20731972/149432138-f34c1b35-2ba0-4a6a-a797-ec8b3f6fb64a.png">
